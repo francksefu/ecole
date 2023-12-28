@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  promotion_id: 1
+  course_id: 1
+  point: 1.5
+  year_id: 1
+  periode_id: 1
+
+two:
+  promotion_id: 1
+  course_id: 1
+  point: 1.5
+  year_id: 1
+  periode_id: 1
