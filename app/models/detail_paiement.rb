@@ -1,0 +1,2 @@
+class DetailPaiement < ApplicationRecord
+end

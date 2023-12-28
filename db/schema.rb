@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_122840) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_123532) do
   create_table "accountants", force: :cascade do |t|
     t.string "name"
     t.string "first_name"
@@ -41,6 +41,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_122840) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.float "credit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "detail_paiement_classrooms", force: :cascade do |t|
+    t.integer "classroom_id"
+    t.integer "detail_paiement_id"
+    t.integer "year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "detail_paiements", force: :cascade do |t|
+    t.string "frais_name"
+    t.float "montant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
