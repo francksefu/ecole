@@ -1,0 +1,2 @@
+class DetailPaiementClassroom < ApplicationRecord
+end
