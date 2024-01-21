@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,12 +67,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
     t.float "montant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "end_date"
+  end
+
+  create_table "discipline_directors", force: :cascade do |t|
+    t.string "name"
+    t.string "first_name"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "evaluations", force: :cascade do |t|
     t.float "point"
     t.float "maximum"
     t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +102,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "observation_disciplinaries", force: :cascade do |t|
+    t.date "date"
+    t.text "observation"
+    t.bigint "discipline_director_id"
+    t.bigint "promotion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_director_id"], name: "index_observation_disciplinaries_on_discipline_director_id"
+    t.index ["promotion_id"], name: "index_observation_disciplinaries_on_promotion_id"
   end
 
   create_table "paiements", force: :cascade do |t|
@@ -111,6 +140,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
     t.integer "during_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
   end
 
   create_table "promotions", force: :cascade do |t|
@@ -122,6 +153,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
     t.index ["classroom_id"], name: "index_promotions_on_classroom_id"
     t.index ["student_id"], name: "index_promotions_on_student_id"
     t.index ["year_id"], name: "index_promotions_on_year_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.date "date"
+    t.integer "first_H"
+    t.integer "second_H"
+    t.integer "third_H"
+    t.integer "fourth_H"
+    t.integer "fifth_H"
+    t.integer "sixth_H"
+    t.integer "seven_H"
+    t.bigint "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_schedules_on_classroom_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -159,10 +205,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_010608) do
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
+  add_foreign_key "observation_disciplinaries", "discipline_directors"
+  add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
   add_foreign_key "paiements", "promotions"
   add_foreign_key "promotions", "classrooms"
   add_foreign_key "promotions", "students"
   add_foreign_key "promotions", "years"
+  add_foreign_key "schedules", "classrooms"
   add_foreign_key "students", "parents"
 end
