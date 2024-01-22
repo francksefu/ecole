@@ -82,8 +82,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.float "point"
     t.float "maximum"
     t.datetime "date"
+    t.bigint "promotion_id"
+    t.bigint "course_id"
+    t.bigint "periode_id"
+    t.bigint "year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_evaluations_on_course_id"
+    t.index ["periode_id"], name: "index_evaluations_on_periode_id"
+    t.index ["promotion_id"], name: "index_evaluations_on_promotion_id"
+    t.index ["year_id"], name: "index_evaluations_on_year_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -205,6 +213,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
+  add_foreign_key "evaluations", "courses"
+  add_foreign_key "evaluations", "periodes"
+  add_foreign_key "evaluations", "promotions"
+  add_foreign_key "evaluations", "years"
   add_foreign_key "observation_disciplinaries", "discipline_directors"
   add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
