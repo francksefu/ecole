@@ -13,7 +13,13 @@
   </head>
 
   <body class='bg-light'>
-    <%= render "/shared/nav_student" %>
+  <% if current_user %>
+    <% if current_user.is? :admin %>
+      <%= render "/shared/nav_admin" %>
+    <% else %>
+      <%= render "/shared/nav_student" %>
+    <% end %>
+  <% end %>
     <p class="notice"><%= notice %><%= alert %></p>
     <%= yield %>
   </body>

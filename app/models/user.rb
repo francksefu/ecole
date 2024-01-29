@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_one :accountant
   has_one :discipline_director
   has_one :studies_director
+
+  def is?(check_role)
+    role == check_role.to_s
+  end
 end
