@@ -1,0 +1,26 @@
+<h1> See teachers</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">name</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+      <th scope="col">date of birth</th>
+      <th scope="col">phone</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @teachers.each do |teacher| %>
+    <tr>
+      <th scope="row"> <%= teacher.id %> </th>
+      <td><%= teacher.name %></td>
+      <td><%= teacher.first_name %></td>
+      <td><%= teacher.last_name %></td>
+      <td><%= teacher.date_of_birth %></td>
+      <td><%= teacher.phone %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

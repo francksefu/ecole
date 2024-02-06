@@ -10,4 +10,5 @@ Rails.application.routes.draw do
    root "homes#index"
    resources :parents
    resources :students
+   resources :teachers
 end

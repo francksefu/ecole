@@ -8,8 +8,7 @@ class TeachersController < ApplicationController
   end
 
   def create
-    @teacher = Teacher.new(name: params[:teacher][:name], first_name: params[:teacher][:first_name],
-                           phone: params[:teacher][:phone], user: User.first)
+    @teacher = User.first.teacher.new(teacher_params)
     respond_to do |format|
       format.html do
         if @teacher.save
@@ -25,6 +24,6 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:name, :first_name, :phone)
+    params.require(:teacher).permit(:name, :first_name, :last_name, :date_of_birth, :phone)
   end
 end
