@@ -4,12 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :student
-  has_one :parent
-  has_one :teacher
-  has_one :accountant
-  has_one :discipline_director
-  has_one :studies_director
+  has_many :student
+  has_many :parent
+  has_many :teacher
+  has_many :accountant
+  has_many :discipline_director
+  has_many :studies_director
 
   def is?(check_role)
     role == check_role.to_s

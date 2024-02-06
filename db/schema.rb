@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_28_132623) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_06_000811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,17 +33,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_132623) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "course_classroom_teachers", force: :cascade do |t|
+  create_table "course_teachers", force: :cascade do |t|
     t.bigint "course_id"
-    t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.bigint "year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["classroom_id"], name: "index_course_classroom_teachers_on_classroom_id"
-    t.index ["course_id"], name: "index_course_classroom_teachers_on_course_id"
-    t.index ["teacher_id"], name: "index_course_classroom_teachers_on_teacher_id"
-    t.index ["year_id"], name: "index_course_classroom_teachers_on_year_id"
+    t.index ["course_id"], name: "index_course_teachers_on_course_id"
+    t.index ["teacher_id"], name: "index_course_teachers_on_teacher_id"
+    t.index ["year_id"], name: "index_course_teachers_on_year_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -51,6 +49,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_132623) do
     t.float "credit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "classroom_id"
+    t.index ["classroom_id"], name: "index_courses_on_classroom_id"
   end
 
   create_table "detail_paiement_classrooms", force: :cascade do |t|
@@ -248,10 +248,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_132623) do
   end
 
   add_foreign_key "accountants", "users"
-  add_foreign_key "course_classroom_teachers", "classrooms"
-  add_foreign_key "course_classroom_teachers", "courses"
-  add_foreign_key "course_classroom_teachers", "teachers"
-  add_foreign_key "course_classroom_teachers", "years"
+  add_foreign_key "course_teachers", "courses"
+  add_foreign_key "course_teachers", "teachers"
+  add_foreign_key "course_teachers", "years"
+  add_foreign_key "courses", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"

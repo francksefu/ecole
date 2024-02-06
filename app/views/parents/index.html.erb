@@ -1,0 +1,22 @@
+<h1> See parents</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">name</th>
+      <th scope="col">first_name</th>
+      <th scope="col">phone</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @parents.each do |parent| %>
+    <tr>
+      <th scope="row"> <%= parent.id %> </th>
+      <td><%= parent.name %></td>
+      <td><%= parent.first_name %></td>
+      <td><%= parent.phone %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
