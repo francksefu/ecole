@@ -4,12 +4,12 @@ class StudentsController < ApplicationController
   end
 
   def new
+    @parents = Parent.all
     @student = Student.new
   end
 
   def create
-    @student = Student.new(name: params[:student][:name], first_name: params[:student][:first_name],
-                           phone: params[:student][:phone], user: User.first)
+    @student = User.first.student.new(student_params)
     respond_to do |format|
       format.html do
         if @student.save
@@ -25,6 +25,6 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:name, :first_name, :phone)
+    params.require(:student).permit(:parent_id, :name, :first_name, :last_name, :date_of_birth, :phone)
   end
 end

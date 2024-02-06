@@ -1,5 +1,4 @@
-<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
-<%= form_with model: parent, url: parents_path, method: :post, class: 'w-100', local: true do |form| %>
+
 <div class='input-group mb-3'>
   <%= form.label :name, class: 'input-group-text' %>
   <%= form.text_field :name, class: 'form-control'%>
@@ -13,10 +12,4 @@
   <%= form.text_field :phone, class: 'form-control' %>
 </div>
 
-<div class='input-group mb-3'>
-  <%= form.label :user_id, class: 'input-group-text'%>
-  <%= form.number_field :user_id, class: 'form-control' %>
-</div>
 
-<%= form.submit class: 'btn btn-primary' %>
-<% end %>
