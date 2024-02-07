@@ -1,0 +1,19 @@
+
+<h1> See sections</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @sections.each do |section| %>
+    <tr>
+      <td><%= section.name %></td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

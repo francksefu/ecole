@@ -14,4 +14,5 @@ Rails.application.routes.draw do
    resources :accountants
    resources :studies_directors
    resources :discipline_directors
+   resources :sections
 end

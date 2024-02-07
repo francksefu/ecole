@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_07_092159) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_07_112023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,23 +26,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_092159) do
     t.index ["user_id"], name: "index_accountants_on_user_id"
   end
 
+  create_table "classroom_courses", force: :cascade do |t|
+    t.bigint "classroom_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_courses_on_classroom_id"
+    t.index ["course_id"], name: "index_classroom_courses_on_course_id"
+  end
+
   create_table "classrooms", force: :cascade do |t|
-    t.string "section"
     t.string "name"
     t.string "classement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "section_id"
+    t.index ["section_id"], name: "index_classrooms_on_section_id"
   end
 
   create_table "course_teachers", force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "teacher_id"
-    t.bigint "year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "classroom_id"
+    t.bigint "course_id"
+    t.index ["classroom_id"], name: "index_course_teachers_on_classroom_id"
     t.index ["course_id"], name: "index_course_teachers_on_course_id"
-    t.index ["teacher_id"], name: "index_course_teachers_on_teacher_id"
-    t.index ["year_id"], name: "index_course_teachers_on_year_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -50,8 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_092159) do
     t.float "credit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "classroom_id"
-    t.index ["classroom_id"], name: "index_courses_on_classroom_id"
   end
 
   create_table "detail_paiement_classrooms", force: :cascade do |t|
@@ -193,6 +199,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_092159) do
     t.index ["classroom_id"], name: "index_schedules_on_classroom_id"
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "first_name"
@@ -251,10 +263,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_092159) do
   end
 
   add_foreign_key "accountants", "users"
+  add_foreign_key "classroom_courses", "classrooms"
+  add_foreign_key "classroom_courses", "courses"
+  add_foreign_key "classrooms", "sections"
+  add_foreign_key "course_teachers", "classrooms"
   add_foreign_key "course_teachers", "courses"
-  add_foreign_key "course_teachers", "teachers"
-  add_foreign_key "course_teachers", "years"
-  add_foreign_key "courses", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
