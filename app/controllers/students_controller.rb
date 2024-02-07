@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html do
         if @student.save
-          @student.create_associate_user
+          @student.create_associate_user('student')
           flash[:success] = 'student saved successfully'
           redirect_to students_path
         else

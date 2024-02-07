@@ -1,4 +1,6 @@
 class Accountant < ApplicationRecord
+  include AssociateUser
+
   has_many :paiements
   belongs_to :user
   validates :name, presence: true

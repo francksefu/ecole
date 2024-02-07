@@ -11,4 +11,7 @@ Rails.application.routes.draw do
    resources :parents
    resources :students
    resources :teachers
+   resources :accountants
+   resources :studies_directors
+   resources :discipline_directors
 end
