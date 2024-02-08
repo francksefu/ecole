@@ -18,4 +18,5 @@ Rails.application.routes.draw do
    resources :classrooms
    resources :courses
    resources :years
+   resources :periodes
 end                                                          

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,10 +47,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
   create_table "course_teachers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "classroom_id"
-    t.bigint "course_id"
-    t.index ["classroom_id"], name: "index_course_teachers_on_classroom_id"
-    t.index ["course_id"], name: "index_course_teachers_on_course_id"
+    t.bigint "teacher_id"
+    t.bigint "classroom_course_id"
+    t.index ["classroom_course_id"], name: "index_course_teachers_on_classroom_course_id"
+    t.index ["teacher_id"], name: "index_course_teachers_on_teacher_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -99,13 +99,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
     t.bigint "promotion_id"
     t.bigint "course_id"
     t.bigint "periode_id"
-    t.bigint "year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_evaluations_on_course_id"
     t.index ["periode_id"], name: "index_evaluations_on_periode_id"
     t.index ["promotion_id"], name: "index_evaluations_on_promotion_id"
-    t.index ["year_id"], name: "index_evaluations_on_year_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -171,6 +169,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.bigint "year_id"
+    t.index ["year_id"], name: "index_periodes_on_year_id"
   end
 
   create_table "promotions", force: :cascade do |t|
@@ -267,8 +267,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
   add_foreign_key "classroom_courses", "classrooms"
   add_foreign_key "classroom_courses", "courses"
   add_foreign_key "classrooms", "sections"
-  add_foreign_key "course_teachers", "classrooms"
-  add_foreign_key "course_teachers", "courses"
+  add_foreign_key "course_teachers", "classroom_courses"
+  add_foreign_key "course_teachers", "teachers"
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
@@ -276,12 +276,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
   add_foreign_key "evaluations", "courses"
   add_foreign_key "evaluations", "periodes"
   add_foreign_key "evaluations", "promotions"
-  add_foreign_key "evaluations", "years"
   add_foreign_key "observation_disciplinaries", "discipline_directors"
   add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
   add_foreign_key "paiements", "promotions"
   add_foreign_key "parents", "users"
+  add_foreign_key "periodes", "years"
   add_foreign_key "promotions", "classrooms"
   add_foreign_key "promotions", "students"
   add_foreign_key "promotions", "years"

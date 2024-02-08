@@ -1,7 +1,6 @@
 class Evaluation < ApplicationRecord
   belongs_to :course
   belongs_to :promotion
-  belongs_to :year
   belongs_to :periode
 
   validates :course_id, presence: true
