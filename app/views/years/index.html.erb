@@ -1,0 +1,20 @@
+
+<h1> See years</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @years.each do |year| %>
+    <tr>
+      <td><%= year.name %></td>
+      <td><%= year.description %> </td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_07_112023) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_090928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_112023) do
     t.float "credit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   create_table "detail_paiement_classrooms", force: :cascade do |t|
@@ -166,7 +167,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_112023) do
 
   create_table "periodes", force: :cascade do |t|
     t.string "name"
-    t.integer "during_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "start_date"
@@ -260,6 +260,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_112023) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   add_foreign_key "accountants", "users"

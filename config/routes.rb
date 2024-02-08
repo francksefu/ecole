@@ -15,4 +15,7 @@ Rails.application.routes.draw do
    resources :studies_directors
    resources :discipline_directors
    resources :sections
-end
+   resources :classrooms
+   resources :courses
+   resources :years
+end                                                          

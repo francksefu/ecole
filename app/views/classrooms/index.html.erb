@@ -1,0 +1,22 @@
+
+<h1> See classrooms</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">classement</th>
+      <th scope="col">section</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @classrooms.each do |classroom| %>
+    <tr>
+      <td><%= classroom.name %></td>
+      <td><%= classroom.classement %> </td>
+      <td><%= classroom.section.name %> </td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,22 @@
+<h1 class="text-secondary text-center"> Create classroom </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @classroom, url: classrooms_path, method: :post, class: 'w-100', local: true do |form| %>
+<div class='input-group mb-3'>
+  <%= form.label :name, class: 'input-group-text' %>
+  <%= form.text_field :name, class: 'form-control'%>
+</div>
+
+<div class='input-group mb-3'>
+  <%= form.label :classement, class: 'input-group-text' %>
+  <%= form.text_field :classement, class: 'form-control'%>
+</div>
+
+
+  <div class="input-group mb-3">
+    <%= form.label :section_id, class: "input-group-text" %>
+    <%= form.select :section_id, @sections.map {|section| [section.name, section.id]}, {}, {class: 'form-control'} %>
+  </div>
+
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>
