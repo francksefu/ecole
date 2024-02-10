@@ -1,0 +1,24 @@
+<div class="container-fluid">
+<h1><%= @classroom.name %> </h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">credit</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @classroom_courses.each do |classroom_course| %>
+    <tr>
+      <td><%= classroom_course.course.name %></td>
+      <td><%= classroom_course.course.credit %> </td>
+      <td><%= classroom_course.course.description %> </td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<a class='btn btn-primary' href='<%= new_classroom_classroom_course_path(@classroom) %>'> Add course to this classroom</a>
+</div>

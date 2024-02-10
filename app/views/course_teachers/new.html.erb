@@ -1,0 +1,21 @@
+<h1 class="text-secondary text-center"> Affectation course to teacher </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @course_teacher, url: teacher_course_teachers_path, method: :post, class: 'w-100', local: true do |form| %>
+
+  <div class="input-group mb-3">
+    <%= form.label :year_id, class: "input-group-text" %>
+    <%= form.select :year_id, @years.map {|year| [year.name, year.id]}, {}, {class: 'form-control'} %>
+  </div>
+
+  <div class="input-group mb-3">
+    <%= form.label :classroom_course_id, class: "input-group-text" %>
+    <%= form.text_field :classroom_course_id, class: 'form-control', list: 'parent_list' %>
+    <datalist id='parent_list'>
+      <% @classroom_courses.each do |classroom_course| %>
+      <option value="<%= classroom_course.id %>"><%= "#{classroom_course.classroom.name}  #{classroom_course.classroom.classement}  #{classroom_course.classroom.section.name} course : #{classroom_course.course.name}" %> </option>
+      <% end %>
+    </datalist>
+  </div>
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

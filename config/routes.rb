@@ -10,12 +10,16 @@ Rails.application.routes.draw do
    root "homes#index"
    resources :parents
    resources :students
-   resources :teachers
+   resources :teachers do
+    resources :course_teachers
+   end
    resources :accountants
    resources :studies_directors
    resources :discipline_directors
    resources :sections
-   resources :classrooms
+   resources :classrooms do
+    resources :classroom_courses
+   end
    resources :courses
    resources :years
    resources :periodes

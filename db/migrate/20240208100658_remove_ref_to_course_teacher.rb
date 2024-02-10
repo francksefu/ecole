@@ -4,5 +4,6 @@ class RemoveRefToCourseTeacher < ActiveRecord::Migration[7.1]
     remove_reference :course_teachers, :classroom, foreign_key: true
     add_reference :course_teachers, :teacher, foreign_key: true
     add_reference :course_teachers, :classroom_course, foreign_key: true
+    add_reference :course_teachers, :year, foreign_key: true
   end
 end

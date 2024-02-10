@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>  
     <%= javascript_importmap_tags %>
-    
+   
   </head>
 
   <body class='bg-light'>
@@ -20,7 +20,9 @@
       <%= render "/shared/nav_student" %>
     <% end %>
   <% end %>
-    <p class="notice"><%= notice %><%= alert %></p>
+    <% flash.each do |name, msg| %>
+      <div class="<%= name %>"><%= msg %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -24,6 +24,11 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  def show
+    @classroom = Classroom.find(params[:id])
+    @classroom_courses = @classroom.classroom_courses
+  end
+
   def classroom_params
     params.require(:classroom).permit(:section_id, :name, :classement)
   end

@@ -1,0 +1,41 @@
+<div class='w-50 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @teacher.name %> <%= @teacher.last_name %></h3>
+    <h6><%= @teacher.first_name %> </h6>
+    <h6><%= @teacher.phone %> </h6>
+    <h6><%= @teacher.date_of_birth %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    <a href='<%= new_teacher_course_teacher_path(@teacher) %>' class='btn btn-dark'> Add affectation to course </a>
+  </div>
+</div>
+
+<% @years.each do |year| %>
+<h2 class="text-center"> <%= year.name %> </h2>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> classroom name</th>
+      <th scope="col">section</th>
+      <th scope="col">course</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_teachers.each do |course_teacher| %>
+    <% if course_teacher.year == year%>
+    <tr>
+      <td><%= course_teacher.classroom_course.classroom.name %> <%= course_teacher.classroom_course.classroom.classement %></td>
+      <td><%= course_teacher.classroom_course.classroom.section.name%></td>
+      <td><%= course_teacher.classroom_course.course.name%></td>
+     
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

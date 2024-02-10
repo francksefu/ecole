@@ -49,8 +49,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
     t.datetime "updated_at", null: false
     t.bigint "teacher_id"
     t.bigint "classroom_course_id"
+    t.bigint "year_id"
     t.index ["classroom_course_id"], name: "index_course_teachers_on_classroom_course_id"
     t.index ["teacher_id"], name: "index_course_teachers_on_teacher_id"
+    t.index ["year_id"], name: "index_course_teachers_on_year_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -269,6 +271,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
   add_foreign_key "classrooms", "sections"
   add_foreign_key "course_teachers", "classroom_courses"
   add_foreign_key "course_teachers", "teachers"
+  add_foreign_key "course_teachers", "years"
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"

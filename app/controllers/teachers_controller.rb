@@ -23,6 +23,12 @@ class TeachersController < ApplicationController
     end
   end
 
+  def show
+    @teacher = Teacher.find_by(id: params[:id])
+    @years = Year.all.order(name: :desc)
+    @course_teachers = @teacher.course_teachers
+  end
+
   def teacher_params
     params.require(:teacher).permit(:name, :first_name, :last_name, :date_of_birth, :phone)
   end
