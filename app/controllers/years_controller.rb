@@ -2,7 +2,12 @@ class YearsController < ApplicationController
     def index
       @years = Year.all
     end
-  
+ 
+    def show
+      @year = Year.find_by(id: params[:id])
+      @periodes = @year.periodes
+    end
+
     def new
       @year = Year.new
     end

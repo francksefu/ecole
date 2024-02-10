@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :promotions, only: [:new, :create]
    end
    resources :teachers do
-    resources :course_teachers
+    resources :course_teachers do 
+      resources :periodes do 
+        resources :promotions, only: [:index]
+      end
+    end
    end
    resources :accountants
    resources :studies_directors
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
     resources :classroom_teachers, only: [:index]
    end
    resources :courses
-   resources :years
-   resources :periodes
+   resources :years do
+    resources :periodes
+   end
+   
 end                                                          

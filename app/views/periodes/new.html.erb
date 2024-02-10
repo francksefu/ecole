@@ -1,7 +1,7 @@
-<h1 class="text-secondary text-center"> Create classroom </h1>
+<h1 class="text-secondary text-center"> Create periode for <%= @year.name %> </h1>
 
 <div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
-<%= form_with model: @periode, url: periodes_path, method: :post, class: 'w-100', local: true do |form| %>
+<%= form_with model: @periode, url: year_periodes_path, method: :post, class: 'w-100', local: true do |form| %>
   <div class='input-group mb-3'>
     <%= form.label :name, class: 'input-group-text' %>
     <%= form.text_field :name, class: 'form-control'%>
@@ -16,9 +16,6 @@
     <%= form.label :end_date, class: 'input-group-text' %>
     <%= form.date_field :end_date, class: 'form-control'%>
   </div>
-  <div class="input-group mb-3">
-    <%= form.label :year_id, class: "input-group-text" %>
-    <%= form.select :year_id, @years.map {|year| [year.name, year.id]}, {}, {class: 'form-control'} %>
-  </div>
+  
 <%= form.submit class: 'btn btn-primary' %>
 <% end %>

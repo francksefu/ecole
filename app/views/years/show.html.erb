@@ -1,0 +1,38 @@
+<div class='w-50 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @year.name %> </h3>
+    <h6><%= @year.description %> </h6>
+    
+  </div>
+  <div class='ms-3 me-3'>
+    <a href='<%= new_year_periode_path(@year) %>' class='btn btn-dark'> Add periode to this year </a>
+  </div>
+</div>
+</div>
+<% if @periodes.empty?%>
+  <h3> Not periode </h3>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> name</th>
+      <th scope="col">start_date</th>
+      <th scope="col">end_date</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @periodes.each do |periode| %>
+    <tr>
+      <td><%= periode.name %> </td>
+      <td><%= periode.start_date%></td>
+      <td> <%= periode.end_date %></td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

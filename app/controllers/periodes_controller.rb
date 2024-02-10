@@ -5,15 +5,16 @@ class PeriodesController < ApplicationController
   end
 
   def new
-    @years = Year.all
     @periode = Periode.new
+    @year = Year.find_by(id: params[:year_id].to_i)
   end
 
   def create
-    @periode = Periode.new(periode_params)
+    @year = Year.find_by(id: params[:year_id].to_i)
+    @periode = @year.periodes.new(periode_params)
     if @periode.save
       flash[:success] = 'Periode saved successfully'
-      redirect_to periodes_path
+      redirect_to @year
     else
       flash[:error] = 'Error: Period didn t be save '
       render :new, locals: {periode: @periode}
@@ -23,6 +24,6 @@ class PeriodesController < ApplicationController
   private
 
   def periode_params
-    params.require(:periode).permit(:name, :start_date, :end_date, :year_id)
+    params.require(:periode).permit(:name, :start_date, :end_date)
   end
 end
