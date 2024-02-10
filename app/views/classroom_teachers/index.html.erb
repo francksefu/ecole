@@ -1,0 +1,36 @@
+<div class='w-50 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
+    <h6><%= @classroom.section.name %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    
+  </div>
+</div>
+
+<% @years.each do |year| %>
+<h5 class="text-center w-25 d-block mx-auto bg-warning"> <%= year.name %> </h5>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> course name</th>
+      <th scope="col">teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_teachers.each do |course_teacher| %>
+    <% if course_teacher.year == year && course_teacher.classroom_course.classroom == @classroom%>
+    <tr>
+      <td><%= course_teacher.classroom_course.course.name%></td>
+      <td><%= "#{course_teacher.teacher.name} #{course_teacher.teacher.first_name} #{course_teacher.teacher.last_name}" %></td>
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

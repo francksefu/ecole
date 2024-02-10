@@ -3,6 +3,12 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def show
+    @student = Student.find_by(id: params[:id])
+    @years = Year.all.order(name: :desc)
+    @promotions = @student.promotions
+  end
+
   def new
     @parents = Parent.all
     @student = Student.new

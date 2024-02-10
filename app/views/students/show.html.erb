@@ -1,0 +1,43 @@
+<div class='w-50 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @student.name %> <%= @student.last_name %></h3>
+    <h6><%= @student.first_name %> </h6>
+    <h6><%= @student.phone %> </h6>
+    <h6><%= @student.date_of_birth %></h6>
+    <h6><%= "parent names : #{@student.parent.name} #{@student.parent.first_name} "%> </h6>
+    <h6> parent phone :<%= @student.parent.phone %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    <a href='<%= new_student_promotion_path(@student) %>' class='btn btn-dark'> Add affectation to promotion </a>
+  </div>
+</div>
+</div>
+<% if @promotions.empty?%>
+  <h3> Not promotion affected yet </h3>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> Year scholar</th>
+      <th scope="col">classroom</th>
+      <th scope="col">section</th>
+      <th scope="col">status</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @promotions.each do |promotion| %>
+    <tr>
+      <td><%= promotion.year.name %> </td>
+      <td><%= "#{promotion.classroom.name} #{promotion.classroom.classement}" %></td>
+      <td><%= promotion.classroom.section.name%></td>
+      <td> pass + pourcentage</td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

@@ -1,5 +1,15 @@
 <div class="container-fluid">
-<h1><%= @classroom.name %> </h1>
+<div class='w-50 d-block mx-auto'>
+  <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+    <div>
+      <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
+      <h6><%= @classroom.section.name %> </h6>
+    </div>
+    <div class='ms-3 me-3'>
+      <a href='<%= classroom_classroom_teachers_path(@classroom) %>' class='btn btn-dark'> See teachers for every course </a>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
