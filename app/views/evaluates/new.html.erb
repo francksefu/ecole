@@ -1,0 +1,12 @@
+<h1 class="text-secondary text-center"> Create evaluation for <%= @promotion.student.name %> </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @evaluate, url: teacher_course_teacher_periode_promotion_date_evaluation_evaluates_path, method: :post, class: 'w-100', local: true do |form| %>
+
+  <div class='input-group mb-3'>
+    <%= form.label :point, class: 'input-group-text' %>
+    <%= form.number_field :point, step: :any, class: 'form-control'%>
+  </div>
+  
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

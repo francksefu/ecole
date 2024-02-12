@@ -1,0 +1,16 @@
+<h1 class="text-secondary text-center"> Create evaluation for <%= @periode.name %> </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @date_evaluation, url: teacher_course_teacher_periode_date_evaluations_path, method: :post, class: 'w-100', local: true do |form| %>
+  <div class='input-group mb-3'>
+    <%= form.label :date, class: 'input-group-text' %>
+    <%= form.date_field :date, class: 'form-control'%>
+  </div>
+
+  <div class='input-group mb-3'>
+    <%= form.label :maximum, class: 'input-group-text' %>
+    <%= form.number_field :maximum, step: :any, class: 'form-control'%>
+  </div>
+  
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

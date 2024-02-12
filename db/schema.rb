@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_101328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
     t.text "description"
   end
 
+  create_table "date_evaluations", force: :cascade do |t|
+    t.date "date"
+    t.float "maximum"
+    t.bigint "classroom_course_id"
+    t.bigint "periode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_course_id"], name: "index_date_evaluations_on_classroom_course_id"
+    t.index ["periode_id"], name: "index_date_evaluations_on_periode_id"
+  end
+
   create_table "detail_paiement_classrooms", force: :cascade do |t|
     t.bigint "classroom_id"
     t.bigint "detail_paiement_id"
@@ -94,18 +105,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
     t.index ["user_id"], name: "index_discipline_directors_on_user_id"
   end
 
-  create_table "evaluations", force: :cascade do |t|
+  create_table "evaluates", force: :cascade do |t|
     t.float "point"
-    t.float "maximum"
-    t.datetime "date"
+    t.bigint "date_evaluation_id"
     t.bigint "promotion_id"
-    t.bigint "course_id"
-    t.bigint "periode_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_evaluations_on_course_id"
-    t.index ["periode_id"], name: "index_evaluations_on_periode_id"
-    t.index ["promotion_id"], name: "index_evaluations_on_promotion_id"
+    t.index ["date_evaluation_id"], name: "index_evaluates_on_date_evaluation_id"
+    t.index ["promotion_id"], name: "index_evaluates_on_promotion_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -276,9 +283,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_100658) do
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
   add_foreign_key "discipline_directors", "users"
-  add_foreign_key "evaluations", "courses"
-  add_foreign_key "evaluations", "periodes"
-  add_foreign_key "evaluations", "promotions"
   add_foreign_key "observation_disciplinaries", "discipline_directors"
   add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
