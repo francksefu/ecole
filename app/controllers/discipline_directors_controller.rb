@@ -7,6 +7,11 @@ class DisciplineDirectorsController < ApplicationController
     @discipline_director = DisciplineDirector.new
   end
 
+  def show
+    @discipline_director = DisciplineDirector.find(params[:id].to_i)
+    @sections = Section.all.includes(:classrooms)
+    @years = Year.all.order(created_at: :desc)
+  end
   def create
     @discipline_director = User.first.discipline_director.new(discipline_director_params)
     respond_to do |format|

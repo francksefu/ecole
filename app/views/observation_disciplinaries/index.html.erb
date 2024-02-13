@@ -1,0 +1,57 @@
+<div class='w-50 d-block mx-auto'>
+
+  <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+    <div>
+      <h3><%= @discipline_director.name %> <%= @discipline_director.last_name %></h3>
+      <h6><%= @discipline_director.first_name %> </h6>
+      <h6><%= @discipline_director.phone %> </h6>
+      <h6><%= @discipline_director.date_of_birth %> </h6>
+    </div>
+    <div class='ms-3 me-3'>
+    </div>
+    
+  </div>
+
+  <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+    <div>
+      <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
+      <h6><%= @classroom.section.name %> </h6>
+    </div>
+    <div class='ms-3 me-3'>
+      <a href='<%= new_discipline_director_year_classroom_observation_disciplinary_path(@discipline_director, @year, @classroom) %>' class='btn btn-dark'> Add new observation of indisciplinary </a>
+      
+    </div>
+  </div>
+
+</div>
+
+<% if @observation_disciplinaries.empty? %>
+ <p> Not observation of indiscipline here </p>
+<% else %>
+<div>
+<h3 class="text-center text-secondary mb-3 mt-3"> Observation of discipline </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">student</th>
+        <th scope="col">date</th>
+        <th scope="col">observation</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @observation_disciplinaries.each do |observation_disciplinary| %>
+     <% if observation_disciplinary.promotion.classroom == @classroom %>
+      <tr>
+        <td><%= "#{observation_disciplinary.promotion.student.name} #{observation_disciplinary.promotion.student.first_name} #{observation_disciplinary.promotion.student.last_name}" %></td>
+        <td> <%= observation_disciplinary.date %></td>
+        <td> <%= observation_disciplinary.observation %></td>
+        <td> action </td>
+      </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+

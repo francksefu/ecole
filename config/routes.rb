@@ -28,7 +28,14 @@ Rails.application.routes.draw do
    end
    resources :accountants
    resources :studies_directors
-   resources :discipline_directors
+   resources :discipline_directors do
+    resources :years do
+      resources :classrooms do
+        resources :observation_disciplinaries, only: [:new, :create, :index]
+      end
+    end
+    
+   end
    resources :sections
    resources :classrooms do
     resources :classroom_courses
