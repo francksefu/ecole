@@ -1,7 +1,7 @@
 class CreatePaiements < ActiveRecord::Migration[7.1]
   def change
     create_table :paiements do |t|
-      t.date :date
+      t.datetime :date
       t.float :montant
       t.float :reste
       t.references :promotion, foreign_key: true

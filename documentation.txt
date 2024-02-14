@@ -1,0 +1,5 @@
+In This file you will file, you will find the documentation of this application, my name is franck and
+I am the creator, and the owner of this application. thank you
+
+Home : Take the name of customer (Etablissements), who buy the application
+User communicatie with all entity of person and every user must be link to one person

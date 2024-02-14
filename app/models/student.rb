@@ -3,6 +3,7 @@ class Student < ApplicationRecord
   has_many :classrooms, through: :promotions
   belongs_to :parent
   has_many :paiements
+  belongs_to :user
 
   validates :name, presence: true
   validates :first_name, presence: true

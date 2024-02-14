@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_28_132623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_accountants_on_user_id"
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -76,6 +78,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_discipline_directors_on_user_id"
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -99,6 +103,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.date "end_date"
     t.string "title"
     t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -141,6 +151,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
   create_table "periodes", force: :cascade do |t|
@@ -187,7 +199,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["parent_id"], name: "index_students_on_parent_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "studies_directors", force: :cascade do |t|
+    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "phone"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_studies_directors_on_user_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -198,6 +224,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "years", force: :cascade do |t|
@@ -206,6 +247,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "accountants", "users"
   add_foreign_key "course_classroom_teachers", "classrooms"
   add_foreign_key "course_classroom_teachers", "courses"
   add_foreign_key "course_classroom_teachers", "teachers"
@@ -213,6 +255,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
   add_foreign_key "detail_paiement_classrooms", "years"
+  add_foreign_key "discipline_directors", "users"
   add_foreign_key "evaluations", "courses"
   add_foreign_key "evaluations", "periodes"
   add_foreign_key "evaluations", "promotions"
@@ -221,9 +264,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_213904) do
   add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
   add_foreign_key "paiements", "promotions"
+  add_foreign_key "parents", "users"
   add_foreign_key "promotions", "classrooms"
   add_foreign_key "promotions", "students"
   add_foreign_key "promotions", "years"
   add_foreign_key "schedules", "classrooms"
   add_foreign_key "students", "parents"
+  add_foreign_key "students", "users"
+  add_foreign_key "studies_directors", "users"
+  add_foreign_key "teachers", "users"
 end
