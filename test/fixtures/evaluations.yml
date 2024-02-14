@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point: 1.5
+  maximum: 1.5
+  date: 2024-01-21 02:51:04
+
+two:
+  point: 1.5
+  maximum: 1.5
+  date: 2024-01-21 02:51:04

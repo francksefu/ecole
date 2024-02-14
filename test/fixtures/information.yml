@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: MyString
+  destination: MyString
+  contenu: MyText
+  date: 2024-01-21 02:42:49
+
+two:
+  source: MyString
+  destination: MyString
+  contenu: MyText
+  date: 2024-01-21 02:42:49
