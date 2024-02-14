@@ -13,16 +13,16 @@ Rails.application.routes.draw do
     resources :promotions, only: [:new, :create]
    end
    resources :teachers do
-    resources :course_teachers do 
-      resources :periodes do 
-        
-        resources :date_evaluations, only: [:new, :create] 
+    resources :course_teachers do
+      resources :periodes do
+
+        resources :date_evaluations, only: [:new, :create]
         resources :promotions, only: [:index] do
           resources :date_evaluations, only: [:new, :create] do
             resources :evaluates, only: [:new, :create]
           end
         end
-        
+
       end
     end
    end
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
         resources :observation_disciplinaries, only: [:new, :create, :index]
       end
     end
-    
+
    end
    resources :sections
    resources :classrooms do
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
    resources :courses
    resources :years do
     resources :periodes
+    resources :detail_paiements, only: [:new, :create, :index]
    end
-   
-end                                                          
+
+end

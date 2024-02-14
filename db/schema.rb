@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_11_101328) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_14_113006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,12 +77,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_101328) do
   create_table "detail_paiement_classrooms", force: :cascade do |t|
     t.bigint "classroom_id"
     t.bigint "detail_paiement_id"
-    t.bigint "year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["classroom_id"], name: "index_detail_paiement_classrooms_on_classroom_id"
     t.index ["detail_paiement_id"], name: "index_detail_paiement_classrooms_on_detail_paiement_id"
-    t.index ["year_id"], name: "index_detail_paiement_classrooms_on_year_id"
   end
 
   create_table "detail_paiements", force: :cascade do |t|
@@ -91,6 +89,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_101328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "end_date"
+    t.bigint "year_id"
+    t.text "description"
+    t.index ["year_id"], name: "index_detail_paiements_on_year_id"
   end
 
   create_table "discipline_directors", force: :cascade do |t|
@@ -281,7 +282,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_101328) do
   add_foreign_key "course_teachers", "years"
   add_foreign_key "detail_paiement_classrooms", "classrooms"
   add_foreign_key "detail_paiement_classrooms", "detail_paiements"
-  add_foreign_key "detail_paiement_classrooms", "years"
+  add_foreign_key "detail_paiements", "years"
   add_foreign_key "discipline_directors", "users"
   add_foreign_key "observation_disciplinaries", "discipline_directors"
   add_foreign_key "observation_disciplinaries", "promotions"
