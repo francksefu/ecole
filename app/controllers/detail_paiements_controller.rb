@@ -28,6 +28,6 @@ class DetailPaiementsController < ApplicationController
   end
 
   def detail_paiement_params
-    params.require(:detail_paiement).permit(:frais_name, :montant, :description)
+    params.require(:detail_paiement).permit(:frais_name, :montant, :end_date, :description)
   end
 end

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
    end
    resources :sections
    resources :classrooms do
+    get "/classroom_paiement", to: "detail_paiement_classrooms#classroom_paiement"
     resources :classroom_courses
     resources :classroom_teachers, only: [:index]
    end

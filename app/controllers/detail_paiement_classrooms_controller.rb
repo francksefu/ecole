@@ -20,6 +20,12 @@ class DetailPaiementClassroomsController < ApplicationController
     end
   end
 
+  def classroom_paiement
+    @total = 0
+    @classroom = Classroom.find(params[:classroom_id].to_i)
+    @detail_paiement_classrooms = @classroom.detail_paiement_classrooms
+  end
+
   def detail_paie_params
     params.require(:detail_paiement_classroom).permit(:classroom_id)
   end

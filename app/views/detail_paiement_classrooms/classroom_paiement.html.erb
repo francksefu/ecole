@@ -1,0 +1,18 @@
+<div class='w-50 d-block mx-auto'>
+  
+ <% @detail_paiement_classrooms.each do |detail_paiement_classroom| %>
+    <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+      <div>
+      <% @total += detail_paiement_classroom.detail_paiement.montant%>
+      <h3><%= detail_paiement_classroom.detail_paiement.frais_name %> </h3>
+      <h6><%= detail_paiement_classroom.detail_paiement.montant %> $</h6>
+      <h6> date de fin de paie : <%= detail_paiement_classroom.detail_paiement.end_date %></h6>
+      <p class="mt-2 mb-2"><%= detail_paiement_classroom.detail_paiement.description %> </p>
+      </div>
+      <div class='ms-3 me-3'>
+        
+      </div>
+    </div>
+  <% end %>
+  <h5 class="text-center text-secondary border border-1 mt-3 mb-3">Total : <%= @total %> $ </h5>
+</div>
