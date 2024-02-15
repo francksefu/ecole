@@ -44,7 +44,9 @@ Rails.application.routes.draw do
    resources :courses
    resources :years do
     resources :periodes
-    resources :detail_paiements, only: [:new, :create, :index]
+    resources :detail_paiements, only: [:new, :create, :index, :show] do
+      resources :detail_paiement_classrooms, only: [:new, :create]
+    end
    end
 
 end

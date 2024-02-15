@@ -1,6 +1,9 @@
 class DetailPaiementsController < ApplicationController
 
   def show
+    @detail_paiement = DetailPaiement.find(params[:id].to_i)
+    @year = Year.find(params[:year_id].to_i)
+    @detail_paiement_classrooms = @detail_paiement.detail_paiement_classrooms
   end
 
   def index
