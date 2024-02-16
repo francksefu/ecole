@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_14_113006) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_16_120511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,15 +152,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_113006) do
   end
 
   create_table "paiements", force: :cascade do |t|
-    t.date "date"
     t.float "montant"
-    t.float "reste"
-    t.bigint "promotion_id"
     t.bigint "accountant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "detail_paiement_classroom_id"
+    t.bigint "student_id"
     t.index ["accountant_id"], name: "index_paiements_on_accountant_id"
-    t.index ["promotion_id"], name: "index_paiements_on_promotion_id"
+    t.index ["detail_paiement_classroom_id"], name: "index_paiements_on_detail_paiement_classroom_id"
+    t.index ["student_id"], name: "index_paiements_on_student_id"
   end
 
   create_table "parents", force: :cascade do |t|
@@ -287,7 +287,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_113006) do
   add_foreign_key "observation_disciplinaries", "discipline_directors"
   add_foreign_key "observation_disciplinaries", "promotions"
   add_foreign_key "paiements", "accountants"
-  add_foreign_key "paiements", "promotions"
+  add_foreign_key "paiements", "detail_paiement_classrooms"
+  add_foreign_key "paiements", "students"
   add_foreign_key "parents", "users"
   add_foreign_key "periodes", "years"
   add_foreign_key "promotions", "classrooms"

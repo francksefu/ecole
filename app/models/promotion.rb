@@ -4,7 +4,6 @@ class Promotion < ApplicationRecord
   belongs_to :year
 
   has_many :observation_disciplinaries
-  has_many :paiements
 
   has_many :evaluates
   has_many :courses, through: :evaluates

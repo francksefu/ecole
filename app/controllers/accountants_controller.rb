@@ -1,4 +1,10 @@
 class AccountantsController < ApplicationController
+
+  def show
+    @accountant = Accountant.find(params[:id].to_i)
+    @paiements = @accountant.paiements
+  end
+
   def index
     @accountants = Accountant.all
   end
