@@ -23,6 +23,7 @@
       <th scope="col">classroom</th>
       <th scope="col">section</th>
       <th scope="col">status</th>
+      <th scope="col">paiements</th>
       <th scope="col">action</th>
     </tr>
   </thead>
@@ -33,6 +34,7 @@
       <td><%= "#{promotion.classroom.name} #{promotion.classroom.classement}" %></td>
       <td><%= promotion.classroom.section.name%></td>
       <td> pass + pourcentage</td>
+      <td> <a href='<%= student_classroom_year_paiements_path(@student, promotion.classroom, promotion.year) %>' class='btn btn-primary'> See paiements</a> </td>
       <td> action</td>
     </tr>
   <% end %>

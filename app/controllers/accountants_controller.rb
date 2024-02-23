@@ -3,6 +3,7 @@ class AccountantsController < ApplicationController
   def show
     @accountant = Accountant.find(params[:id].to_i)
     @paiements = @accountant.paiements
+    @students = Student.all
   end
 
   def index

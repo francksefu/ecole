@@ -1,0 +1,72 @@
+<div class='row'>
+  <div class="col-md-3"> </div>
+  <div class='col-md-6'>
+    <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+      <div>
+        <h3><%= @student.name %> <%= @student.last_name %></h3>
+        <h6><%= @student.first_name %> </h6>
+        <h6><%= @student.phone %> </h6>
+        <h6><%= @student.date_of_birth %></h6>
+        <h6><%= "parent names : #{@student.parent.name} #{@student.parent.first_name} "%> </h6>
+        <h6> parent phone :<%= @student.parent.phone %> </h6>
+      </div>
+      <div class='ms-3 me-3'>
+       
+      </div>
+    </div>
+  </div>
+  <div class='col-md-3'></div>
+</div>
+
+<!-- classroom paiement and paiement for student inside -->
+<div class='row'>
+<div class='col-md-3'></div>
+<div class='col-md-6'>
+  
+ <% @detail_paiement_classrooms.find_each do |detail_paiement_classroom| %>
+    <% if detail_paiement_classroom.detail_paiement.year == @year %>
+      <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+        <div>
+        <% @total += detail_paiement_classroom.detail_paiement.montant%>
+        <h3><%= detail_paiement_classroom.detail_paiement.frais_name %> </h3>
+        <h6><%= detail_paiement_classroom.detail_paiement.montant %> $</h6>
+        <h6> date de fin de paie : <%= detail_paiement_classroom.detail_paiement.end_date %></h6>
+        <p class="mt-2 mb-2"><%= detail_paiement_classroom.detail_paiement.description %> </p>
+        </div>
+        <div class='ms-3 me-3'>
+          
+        </div>
+      </div>
+      <!-- array of paiement -->
+      <%if Paiement.where(student: @student, detail_paiement_classroom: detail_paiement_classroom).empty? %>
+        <h6 class='text-danger text-center'> No paiements here yet</h6>
+      <% else %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">montant</th>
+              <th scope="col">date and time</th>
+               <th scope="col">action</th>
+            </tr>
+          </thead>
+          <tbody>
+          <%  Paiement.where(student: @student, detail_paiement_classroom: detail_paiement_classroom).each do |paiement| %>
+            <tr>
+              <td><%= paiement.montant %></td>
+              <td><%= paiement.updated_at %></td>
+              
+              <td>
+               action
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <!-- -->
+    <% end %>
+  <% end %>
+  <h5 class="text-center text-secondary border border-1 mt-3 mb-3">Total : <%= @total %> $ </h5>
+</div>
+<div class='col-md-3'></div>
+</div>

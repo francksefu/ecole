@@ -11,6 +11,11 @@ Rails.application.routes.draw do
    resources :parents
    resources :students do
     resources :promotions, only: [:new, :create]
+    resources :classrooms do
+      resources :years do
+        resources :paiements, only: [:new, :index]
+      end
+    end
    end
    resources :teachers do
     resources :course_teachers do
@@ -26,7 +31,9 @@ Rails.application.routes.draw do
       end
     end
    end
-   resources :accountants
+   resources :accountants do
+    get "/student_promotions", to: "students#student_promotions"
+   end
    resources :studies_directors
    resources :discipline_directors do
     resources :years do
@@ -34,7 +41,6 @@ Rails.application.routes.draw do
         resources :observation_disciplinaries, only: [:new, :create, :index]
       end
     end
-
    end
    resources :sections
    resources :classrooms do

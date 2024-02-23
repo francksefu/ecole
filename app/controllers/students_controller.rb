@@ -3,6 +3,14 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def student_promotions
+
+    @accountant = Accountant.find(params[:accountant_id].to_i)
+    convert_id = params[:student][:student_id].to_i
+    @student = Student.find(convert_id)
+    @promotions = @student.promotions
+    #redirect_to accountant_student_promotions_path
+  end
   def show
     @student = Student.find_by(id: params[:id])
     @years = Year.all.order(name: :desc)
