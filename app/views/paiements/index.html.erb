@@ -25,16 +25,17 @@
   
  <% @detail_paiement_classrooms.find_each do |detail_paiement_classroom| %>
     <% if detail_paiement_classroom.detail_paiement.year == @year %>
-      <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
-        <div>
+      <div class='text-secondary row border border-1 p-3 m-3'>
+        <div class='col-md-6'>
         <% @total += detail_paiement_classroom.detail_paiement.montant%>
         <h3><%= detail_paiement_classroom.detail_paiement.frais_name %> </h3>
         <h6><%= detail_paiement_classroom.detail_paiement.montant %> $</h6>
         <h6> date de fin de paie : <%= detail_paiement_classroom.detail_paiement.end_date %></h6>
+        <h6 class="text-danger"> Reste a payer : <%= (detail_paiement_classroom.detail_paiement.montant) - (Paiement.where(student: @student, detail_paiement_classroom: detail_paiement_classroom).sum(:montant)) %> $ </h6>
         <p class="mt-2 mb-2"><%= detail_paiement_classroom.detail_paiement.description %> </p>
         </div>
-        <div class='ms-3 me-3'>
-          
+        <div class='col-md-5'>
+          <a href='<%= new_student_detail_paiement_classroom_paiement_path(@student, detail_paiement_classroom) %>' class='btn btn-primary'> Add paiement </a>
         </div>
       </div>
       <!-- array of paiement -->
@@ -52,6 +53,7 @@
           <tbody>
           <%  Paiement.where(student: @student, detail_paiement_classroom: detail_paiement_classroom).each do |paiement| %>
             <tr>
+            <% @total_paie += paiement.montant%>
               <td><%= paiement.montant %></td>
               <td><%= paiement.updated_at %></td>
               
@@ -66,7 +68,11 @@
       <!-- -->
     <% end %>
   <% end %>
-  <h5 class="text-center text-secondary border border-1 mt-3 mb-3">Total : <%= @total %> $ </h5>
+  <div class='border border-1'>
+    <h5 class="text-center text-secondary mt-3 mb-3">Total school : <%= @total %> $ </h5>
+    <h5 class="text-center text-secondary mt-3 mb-3">Total paied : <%= @total_paie %> $</h5>
+    <h5 class="text-center text-secondary mt-3 mb-3">Reste : <%= @total - @total_paie %> $ </h5>
+  </div>
 </div>
 <div class='col-md-3'></div>
 </div>

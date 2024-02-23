@@ -10,10 +10,13 @@ Rails.application.routes.draw do
    root "homes#index"
    resources :parents
    resources :students do
+    resources :detail_paiement_classrooms do
+      resources :paiements, only: [:new, :create]
+    end
     resources :promotions, only: [:new, :create]
     resources :classrooms do
       resources :years do
-        resources :paiements, only: [:new, :index]
+        resources :paiements, only: [:index]
       end
     end
    end
