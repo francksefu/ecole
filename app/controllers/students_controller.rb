@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.all
+    @q = Student.ransack(params[:q])
+    @students = @q.result
   end
 
   def student_promotions

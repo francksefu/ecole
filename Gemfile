@@ -71,3 +71,6 @@ group :test do
 end
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem "ransack", "~> 4.1"
+gem "cancancan"

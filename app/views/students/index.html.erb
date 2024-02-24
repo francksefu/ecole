@@ -1,6 +1,17 @@
 <div class='container-fluid'>
 <h1 class='text-center text-secondary mt-3 mb-3'> See students</h1>
 
+<div class='border border-1 m-3 p-3'>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+  <%= f.label :first_name_cont %>
+  <%= f.search_field :first_name_cont %>
+  <%= f.label :last_name_cont %>
+  <%= f.search_field :last_name_cont %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>

@@ -13,4 +13,8 @@ class Student < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :date_of_birth, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "date_of_birth", "first_name", "id", "id_value", "last_name", "name", "parent_id", "phone", "updated_at", "user_id"]
+  end
 end
