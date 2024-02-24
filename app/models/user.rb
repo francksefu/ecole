@@ -14,4 +14,5 @@ class User < ApplicationRecord
   def is?(check_role)
     role == check_role.to_s
   end
+
 end

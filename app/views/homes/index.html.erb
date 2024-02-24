@@ -5,26 +5,19 @@
       <%= image_tag("pictures/ecole.png", :alt => "ecole picture", :class => "img-fluid") %>
     </div>
     <div class="col-md-6 ms-2 me-2">
-    <h1> Bienvenu <%= current_user.email %> </h1>
+    <h1> Bienvenu <%= @name %> </h1>
     <p class='text-secondary pt-3 mb-3'>
     College mwanga est une ecole qui existe depuis plus de 60ans maintenant.
     Nous organisons plusieur sections dont notament :
     <div class='text-secondary'>
-      <ul class="list-group list-group-horizontal">
-        <li class="list-group-item">Commercial</li>
+    <% @sections.each do |section| %>
+      <ul class="list-group list-group-horizontal mt-2">
+        <li class="list-group-item"><%= section.name %></li>
         <li class="list-group-item">100 eleves</li>
-        <li class="list-group-item"> 25 salles de classes</li>
+        <li class="list-group-item"> <%= section.classrooms.count %> salles de classes</li>
       </ul>
-      <ul class="list-group list-group-horizontal">
-        <li class="list-group-item">Commercial</li>
-        <li class="list-group-item">100 eleves</li>
-        <li class="list-group-item"> 25 salles de classes</li>
-      </ul>
-      <ul class="list-group list-group-horizontal">
-        <li class="list-group-item">Commercial</li>
-        <li class="list-group-item">100 eleves</li>
-        <li class="list-group-item"> 25 salles de classes</li>
-      </ul>
+     
+      <% end %>
     </div>
     </p>
     <p class='text-secondary mt-3 mb-3'>
