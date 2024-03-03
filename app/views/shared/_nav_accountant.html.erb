@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_path %>">College</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink6" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Students
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink6">
+            <li><a class="dropdown-item" href="<%= students_path %>">See students</a></li>
+            
+          </ul>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Years and details of paiements
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink5">
+            <li><a class="dropdown-item" href="<%= years_path %>">year and detail paiements</a></li>
+            
+            
+          </ul>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Accountants
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+            <li><a class="dropdown-item" href="<%= new_accountant_path %>">Add accountant</a></li>
+            <li><a class="dropdown-item" href="<%= accountants_path %>">see accountants</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Studies and disciplines directors
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+            <li><a class="dropdown-item" href="<%= new_studies_director_path %>">Add studies director</a></li>
+            <li><a class="dropdown-item" href="<%= studies_directors_path %>">See studies directors</a></li>
+           <li><a class="dropdown-item" href="<%= new_discipline_director_path %>"> Add discipline director</a></li>
+            <li><a class="dropdown-item" href="<%= discipline_directors_path %>">see discipline director</a></li>
+          
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sections and classroom
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+            <li><a class="dropdown-item" href="<%= new_section_path %>">Add studies director</a></li>
+            <li><a class="dropdown-item" href="<%= sections_path %>">See section and classrooms</a></li>
+           <li><a class="dropdown-item" href="<%= new_classroom_path %>"> Add classroom</a></li>
+            <li><a class="dropdown-item" href="<%= classrooms_path %>">see classroom</a></li>
+          
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Years
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+            <li><a class="dropdown-item" href="<%= new_year_path %>">Add year scholarship</a></li>
+            <li><a class="dropdown-item" href="<%= years_path %>">See years, periodes and paiements</a></li>
+          
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

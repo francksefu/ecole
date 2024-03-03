@@ -9,8 +9,10 @@
   </div>
   <div class='ms-3 me-3'>
     <a href='<%= new_year_periode_path(@year) %>' class='btn btn-dark'> Add periode to this year </a>
-    <% unless cannot? :read, current_user %>
-         <a href='<%= year_detail_paiements_path(@year) %>' class='btn btn-dark mt-3'> See differents paiement on this year </a>
+    <% if cannot? :read, current_user %>
+        
+    <% else %>
+      <a href='<%= year_detail_paiements_path(@year) %>' class='btn btn-dark mt-3'> See differents paiement on this year </a>
     <% end %>
 
   </div>

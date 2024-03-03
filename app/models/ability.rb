@@ -10,7 +10,7 @@ class Ability
     end
 
     if user.is? :accountant
-
+      can :manage, DetailPaiement
       can :destroy, Paiement, accountant_id: user.accountant.id
     end
     # Define abilities for the user here. For example:
