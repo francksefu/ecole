@@ -6,12 +6,18 @@ class Ability
   def initialize(user)
 
     if user.is? :administrator
-      cannot :manage, DetailPaiement
+      can :create, Promotion
+      can :manage, Periode
+    end
+
+    if user.is? :studies_director
+      can :create, Promotion
+      can :manage, Periode
     end
 
     if user.is? :accountant
       can :manage, DetailPaiement
-      can :destroy, Paiement, accountant_id: user.accountant.id
+      can :destroy, Paiement, accountant: Accountant.where(user: user)
     end
     # Define abilities for the user here. For example:
 

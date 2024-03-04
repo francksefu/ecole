@@ -18,6 +18,8 @@
   <% if current_user %>
     <% if current_user.is? :administrator %>
       <%= render "/shared/nav_admin" %>
+    <% elsif current_user.is? :accountant %>
+      <%= render "/shared/nav_accountant" %>
     <% else %>
       <%= render "/shared/nav_student" %>
     <% end %>

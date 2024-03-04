@@ -1,14 +1,19 @@
 <div class="container-fluid">
-<div class='w-50 d-block mx-auto'>
-  <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+
+
+<div class='row'>
+  <div class="col-md-3"> </div>
+  <div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
     <div>
       <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
       <h6><%= @classroom.section.name %> </h6>
     </div>
-    <div class='ms-3 me-3'>
+    <div class='p-1'>
       <a href='<%= classroom_classroom_teachers_path(@classroom) %>' class='btn btn-dark'> See teachers for every course </a>
+      <br/><a class='btn btn-primary mt-2' href='<%= new_classroom_classroom_course_path(@classroom) %>'> Add course to this classroom</a>
     </div>
   </div>
+  <div class="col-md-3"> </div>
 </div>
 <table class="table table-striped">
   <thead>
@@ -30,5 +35,5 @@
   </tbody>
 </table>
 
-<a class='btn btn-primary' href='<%= new_classroom_classroom_course_path(@classroom) %>'> Add course to this classroom</a>
+
 </div>

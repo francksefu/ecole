@@ -9,7 +9,9 @@
     <h6> parent phone :<%= @student.parent.phone %> </h6>
   </div>
   <div class='ms-3 me-3'>
+    <% if can?(:create, Promotion) %>
     <a href='<%= new_student_promotion_path(@student) %>' class='btn btn-dark'> Add affectation to promotion </a>
+    <% end %>
   </div>
 </div>
 </div>
