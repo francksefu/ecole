@@ -7,7 +7,9 @@
     <h6><%= @teacher.date_of_birth %> </h6>
   </div>
   <div class='ms-3 me-3'>
-    <a href='<%= new_teacher_course_teacher_path(@teacher) %>' class='btn btn-dark'> Add affectation to course </a>
+    <% if can?(:create, Teacher) %>
+      <a href='<%= new_teacher_course_teacher_path(@teacher) %>' class='btn btn-dark'> Add affectation to course </a>
+    <% end %>
   </div>
 </div>
 </div>
@@ -25,7 +27,9 @@
       <th scope="col">section</th>
       <th scope="col">course</th>
       <th> actions </th>
+      <% if can?(:create, Evaluate) %>
       <th> Evaluation </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -36,11 +40,13 @@
       <td><%= course_teacher.classroom_course.classroom.section.name%></td>
       <td><%= course_teacher.classroom_course.course.name%></td>
       <td> actions </td>
+      <% if can?(:create, Evaluate) %>
       <td>
       <% year.periodes.each do |periode| %>
         <a href="<%= teacher_course_teacher_periode_promotions_path(@teacher, course_teacher, periode) %>" class="btn btn-success"> <%= periode.name %> </a>
       <% end %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   <% end %>

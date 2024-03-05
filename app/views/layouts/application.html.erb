@@ -20,6 +20,8 @@
       <%= render "/shared/nav_admin" %>
     <% elsif current_user.is? :accountant %>
       <%= render "/shared/nav_accountant" %>
+    <% elsif current_user.is? :teacher %>
+      <%= render "/shared/nav_teacher" %>
     <% else %>
       <%= render "/shared/nav_student" %>
     <% end %>

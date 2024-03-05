@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.order(name: :asc)
   end
 
   def new
@@ -24,9 +24,9 @@ class TeachersController < ApplicationController
   end
 
   def show
-    @teacher = Teacher.find_by(id: params[:id])
+    @teacher = Teacher.find(params[:id].to_i)
     @years = Year.all.order(name: :desc)
-    @course_teachers = @teacher.course_teachers
+    @course_teachers = CourseTeacher.where(teacher: @teacher)
   end
 
   def teacher_params

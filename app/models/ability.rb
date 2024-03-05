@@ -8,6 +8,7 @@ class Ability
     if user.is? :administrator
       can :create, Promotion
       can :manage, Periode
+      can :create, Teacher
     end
 
     if user.is? :studies_director
@@ -18,6 +19,10 @@ class Ability
     if user.is? :accountant
       can :manage, DetailPaiement
       can :destroy, Paiement, accountant: Accountant.where(user: user)
+    end
+
+    if user.is? :teacher
+      can :create, Evaluate
     end
     # Define abilities for the user here. For example:
 

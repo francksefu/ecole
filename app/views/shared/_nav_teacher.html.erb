@@ -7,28 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<%= students_path %>">Students</a>
-        </li>
-       
-        <li class="nav-item">
-          <a class="nav-link" href="<%= years_path %>">Details of paiements/year</a>
+          <a class="nav-link" href="<%= teacher_path(current_user.teachers.first.id) %>">Your courses and evaluations</a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="<%= classrooms_path %>">classrooms and paiements</a>
+          <a class="nav-link" href="">Anouncements</a>
         </li>
-
+      
         <li class="nav-item">
-          <a class="nav-link" href=""> Expenses</a>
+          <a class="nav-link" href="<%= destroy_user_session_path %>"> Deconnexion</a>
         </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href=""> Rapports</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= destroy_user_session_path(current_user) %>"> Deconnexion</a>
-        </li>
-
       </ul>
     </div>
   </div>
