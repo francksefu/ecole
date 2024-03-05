@@ -1,5 +1,7 @@
-<div class='w-50 d-block mx-auto'>
-<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+<div>
+<div class="row">
+<div class="col-md-3"></div>
+<div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
   <div>
     <h3><%= @teacher.name %> <%= @teacher.last_name %></h3>
     <h6><%= @teacher.first_name %> </h6>
@@ -10,15 +12,21 @@
     
   </div>
 </div>
+</div>
 
-<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+<div class="row">
+<div class="col-md-3"></div>
+<div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
   <div>
     <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
     <h6><%= @classroom.section.name %> </h6>
   </div>
-    <div class='ms-3 me-3'>
-      <a href='<%= new_teacher_course_teacher_periode_date_evaluation_path(@teacher, @course_teacher, @periode) %>', class='btn btn-dark'> Create new evaluation </a>
-    </div>
+  <div class='ms-3 me-3'>
+    <a href='<%= new_teacher_course_teacher_periode_date_evaluation_path(@teacher, @course_teacher, @periode) %>', class='btn btn-dark'> Create new evaluation </a>
+    <br/> <a href="" class="btn btn-primary bleu mt-2"> Give work online </a>
+  </div>
+  </div>
+  <div class="col-md-3"></div>
   </div>
 </div>
 
@@ -31,8 +39,7 @@
       <% @date_evaluations.each do |date_evaluation| %>
         <th scope="col"> date : <%= date_evaluation.date %> <br> max : <%= date_evaluation.maximum%></th>
       <% end %>
-      
-      <th scope="col">Points</th>
+ 
     </tr>
   </thead>
   <tbody>

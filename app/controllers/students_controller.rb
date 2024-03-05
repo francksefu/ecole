@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = User.first.student.new(student_params)
+    @student = User.first.students.new(student_params)
     respond_to do |format|
       format.html do
         if @student.save

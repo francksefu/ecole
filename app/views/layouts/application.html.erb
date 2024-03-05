@@ -22,8 +22,10 @@
       <%= render "/shared/nav_accountant" %>
     <% elsif current_user.is? :teacher %>
       <%= render "/shared/nav_teacher" %>
-    <% else %>
+    <% elsif current_user.is? :student %>
       <%= render "/shared/nav_student" %>
+    <% else %>
+      
     <% end %>
   <% end %>
     <% flash.each do |name, msg| %>
