@@ -8,7 +8,7 @@ class StudiesDirectorsController < ApplicationController
   end
 
   def create
-    @studies_director = User.first.studies_director.new(studies_director_params)
+    @studies_director = User.first.studies_directors.new(studies_director_params)
     respond_to do |format|
       format.html do
         if @studies_director.save

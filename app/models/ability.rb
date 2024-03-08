@@ -14,6 +14,7 @@ class Ability
     if user.is? :studies_director
       can :create, Promotion
       can :manage, Periode
+      can :create, Teacher
     end
 
     if user.is? :accountant

@@ -24,6 +24,8 @@
       <%= render "/shared/nav_teacher" %>
     <% elsif current_user.is? :student %>
       <%= render "/shared/nav_student" %>
+    <% elsif current_user.is? :studies_director %>
+      <%= render "/shared/nav_studies_director" %>
     <% else %>
       
     <% end %>
