@@ -14,7 +14,7 @@
    
   </head>
 
-  <body class='bg-light'>
+  <body class='bg-light' style="overflow-x: hidden;">
   <% if current_user %>
     <% if current_user.is? :administrator %>
       <%= render "/shared/nav_admin" %>
@@ -26,6 +26,9 @@
       <%= render "/shared/nav_student" %>
     <% elsif current_user.is? :studies_director %>
       <%= render "/shared/nav_studies_director" %>
+    <% elsif current_user.is? :discipline_director %>
+      <%= render "/shared/nav_discipline" %>
+    
     <% else %>
       
     <% end %>

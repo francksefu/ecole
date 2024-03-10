@@ -13,21 +13,21 @@
 </div>
 
 <div>
-<% @years.each do |year| %>
+
 <div class='border border-1 w-75 d-block mx-auto'>
-  <h5 class='text-center w-25 d-block mx-auto'> <%= year.name %> </h5>
+  <h5 class='text-center w-25 d-block mx-auto'> <%= @year.name %> </h5>
   <% @sections.each do |section| %>
   <h6 class='text-center d-block mx-auto text-secondary border border-1 w-50 p-2'> <%= section.name%> </h6>
       
   <div class='row p-3'>
     <% section.classrooms.each do |classroom| %>
       <div class='col-md-3 mt-3'>
-        <a href='<%= discipline_director_year_classroom_observation_disciplinaries_path(@discipline_director, year, classroom) %>' class='btn btn-primary'><%= classroom.name%> </a>
+        <a href='<%= discipline_director_year_classroom_observation_disciplinaries_path(@discipline_director, @year, classroom) %>' class='btn btn-primary'><%= classroom.name%> </a>
       </div>
     <% end %>
     
   </div>
   <% end %>
   </div>
-<% end %>
+
 </div>

@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
   end
 
   def create
-    @teacher = User.first.teacher.new(teacher_params)
+    @teacher = User.first.teachers.new(teacher_params)
     respond_to do |format|
       format.html do
         if @teacher.save

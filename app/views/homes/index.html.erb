@@ -8,7 +8,7 @@
     <h1> Bienvenu <%= @name %> </h1>
     <p class='text-secondary pt-3 mb-3'>
     College mwanga est une ecole qui existe depuis plus de 60ans maintenant.
-    Nous organisons plusieur sections dont notament :
+    Nous organisons plusieur sections dont notament <%= current_user.role%>:
     <div class='text-secondary'>
     <% @sections.each do |section| %>
       <ul class="list-group list-group-horizontal mt-2">

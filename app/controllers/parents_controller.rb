@@ -13,7 +13,7 @@ class ParentsController < ApplicationController
     respond_to do |format|
       format.html do
         if @parent.save
-          @parent.create_associate_user
+          @parent.create_associate_user('parent')
           flash[:success] = 'Parent saved successfully'
           redirect_to parents_path
         else

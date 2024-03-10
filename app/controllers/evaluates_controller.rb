@@ -1,11 +1,17 @@
 class EvaluatesController < ApplicationController
 
+  def index
+    @promotion = Promotion.find(params[:promotion_id].to_i)
+    @year = Year.find(params[:year_id].to_i)
+    @periodes = @year.periodes
+  end
+
   def new
     @periode = Periode.find_by(id: params[:periode_id].to_i)
     @course_teacher = CourseTeacher.find_by(id: params[:course_teacher_id].to_i)
     @teacher = @course_teacher.teacher
     @promotion = Promotion.find_by(id: params[:promotion_id].to_i)
-    
+
     @date_evaluation = DateEvaluation.find_by(id: params[:date_evaluation_id])
     @evaluate = Evaluate.new
   end
@@ -28,6 +34,6 @@ class EvaluatesController < ApplicationController
   end
 
   def evaluate_params
-    
+
   end
 end

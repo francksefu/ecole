@@ -15,7 +15,7 @@ class AccountantsController < ApplicationController
   end
 
   def create
-    @accountant = User.first.accountant.new(accountant_params)
+    @accountant = User.first.accountants.new(accountant_params)
     respond_to do |format|
       format.html do
         if @accountant.save

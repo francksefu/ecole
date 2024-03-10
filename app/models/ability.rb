@@ -15,11 +15,13 @@ class Ability
       can :create, Promotion
       can :manage, Periode
       can :create, Teacher
+      can :create, Evaluate
     end
 
     if user.is? :accountant
       can :manage, DetailPaiement
       can :destroy, Paiement, accountant: Accountant.where(user: user)
+      can :create, Paiement
     end
 
     if user.is? :teacher

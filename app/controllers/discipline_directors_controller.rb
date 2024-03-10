@@ -10,10 +10,11 @@ class DisciplineDirectorsController < ApplicationController
   def show
     @discipline_director = DisciplineDirector.find(params[:id].to_i)
     @sections = Section.all.includes(:classrooms)
-    @years = Year.all.order(created_at: :desc)
+    @year = Year.last
   end
+
   def create
-    @discipline_director = User.first.discipline_director.new(discipline_director_params)
+    @discipline_director = User.first.discipline_directors.new(discipline_director_params)
     respond_to do |format|
       format.html do
         if @discipline_director.save

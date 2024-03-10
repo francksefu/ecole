@@ -12,6 +12,8 @@ class HomesController < ApplicationController
       @name = "Student #{current_user.students.first.name} #{current_user.students.first.first_name}"
     when 'studies_director'
       @name = "Studies director #{current_user.studies_directors.first.name} #{current_user.studies_directors.first.first_name}"
+    when 'discipline_director'
+      @name = "Discipline director #{current_user.discipline_directors.first.name} #{current_user.discipline_directors.first.first_name}"
 
     else
       @name = current_user.email

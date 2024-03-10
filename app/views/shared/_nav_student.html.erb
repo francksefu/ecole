@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 position-sticky top-0">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">College</a>
+    <a class="navbar-brand" href="<%= root_path %>">College</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,8 +17,8 @@
             <%= "#{promotion.classroom.name} #{promotion.year.name}" %>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Evalutes</a></li>
-            <li><a class="dropdown-item" href="#"> Paiements</a></li>
+            <li><a class="dropdown-item" href="<%= promotion_year_evaluates_path(promotion, promotion.year) %>">Evalutes</a></li>
+            <li><a class="dropdown-item" href="<%= student_classroom_year_paiements_path( current_user.students.first, promotion.classroom, promotion.year) %>"> Paiements</a></li>
             <li><a class="dropdown-item" href="#">see work online</a></li>
             <li><a class="dropdown-item" href="#">Bulletin</a></li>
             <li><a class="dropdown-item" href="#">Observation disciplinary</a></li>
