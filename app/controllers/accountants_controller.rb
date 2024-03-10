@@ -1,5 +1,4 @@
 class AccountantsController < ApplicationController
-
   def show
     @accountant = Accountant.find(params[:id].to_i)
     @paiements = @accountant.paiements

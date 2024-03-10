@@ -16,7 +16,7 @@ class ClassroomCoursesController < ApplicationController
       redirect_to @classroom
     else
       flash[:error] = 'Error, something went wrong, course didn t save'
-      render :new, locals: {classroom_course: @classroom_course}
+      render :new, locals: { classroom_course: @classroom_course }
     end
   end
 

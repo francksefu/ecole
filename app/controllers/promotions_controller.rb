@@ -1,5 +1,4 @@
 class PromotionsController < ApplicationController
-   
   def index
     @teacher = Teacher.find_by(id: params[:teacher_id].to_i)
     @course_teacher = CourseTeacher.find_by(id: params[:course_teacher_id].to_i)
@@ -8,7 +7,6 @@ class PromotionsController < ApplicationController
     @year = @course_teacher.year
     @promotions = Promotion.where(classroom: @classroom, year: @year)
     @date_evaluations = DateEvaluation.where(classroom_course: @course_teacher.classroom_course, periode: @periode)
-    
   end
 
   def new
@@ -26,7 +24,7 @@ class PromotionsController < ApplicationController
       redirect_to @student
     else
       flash[:error] = 'Error, something went wrong, course didn t save'
-      render :new, locals: {promotion: @promotion}
+      render :new, locals: { promotion: @promotion }
     end
   end
 

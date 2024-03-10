@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     if user.is? :administrator
       can :create, Promotion
       can :manage, Periode
@@ -20,13 +17,14 @@ class Ability
 
     if user.is? :accountant
       can :manage, DetailPaiement
-      can :destroy, Paiement, accountant: Accountant.where(user: user)
+      can :destroy, Paiement, accountant: Accountant.where(user:)
       can :create, Paiement
     end
 
-    if user.is? :teacher
-      can :create, Evaluate
-    end
+    return unless user.is? :teacher
+
+    can :create, Evaluate
+
     # Define abilities for the user here. For example:
 
     #   return unless user.present?

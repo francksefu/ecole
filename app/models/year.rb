@@ -1,5 +1,4 @@
 class Year < ApplicationRecord
-
   has_many :periodes
   has_many :promotions
   has_many :detail_paiements

@@ -1,5 +1,4 @@
 class DetailPaiementsController < ApplicationController
-
   def show
     @detail_paiement = DetailPaiement.find(params[:id].to_i)
     @year = Year.find(params[:year_id].to_i)
@@ -23,7 +22,7 @@ class DetailPaiementsController < ApplicationController
       redirect_to year_detail_paiements_path(@year)
     else
       flash.now[:error] = 'Error: detail didn t save'
-      render :new, locals: {detail_paiement: @detail_paiement}
+      render :new, locals: { detail_paiement: @detail_paiement }
     end
   end
 

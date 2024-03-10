@@ -5,5 +5,5 @@ class Paiement < ApplicationRecord
 
   validates :student_id, presence: true
   validates :accountant_id, presence: true
-  validates :montant, numericality: {greater_than_or_equal_to: 0}
+  validates :montant, numericality: { greater_than_or_equal_to: 0 }
 end

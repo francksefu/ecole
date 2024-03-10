@@ -1,5 +1,4 @@
 class EvaluatesController < ApplicationController
-
   def index
     @promotion = Promotion.find(params[:promotion_id].to_i)
     @year = Year.find(params[:year_id].to_i)
@@ -33,7 +32,5 @@ class EvaluatesController < ApplicationController
     end
   end
 
-  def evaluate_params
-
-  end
+  def evaluate_params; end
 end

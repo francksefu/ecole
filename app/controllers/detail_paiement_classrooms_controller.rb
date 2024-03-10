@@ -1,5 +1,4 @@
 class DetailPaiementClassroomsController < ApplicationController
-
   def new
     @detail_paiement = DetailPaiement.find(params[:detail_paiement_id].to_i)
     @detail_paiement_classroom = DetailPaiementClassroom.new
@@ -16,7 +15,7 @@ class DetailPaiementClassroomsController < ApplicationController
       redirect_to year_detail_paiement_path(@year, @detail_paiement)
     else
       flash[:error] = 'Error : detail of paiement didn t save'
-      render :new, locals: {detail_paiement_classroom: @detail_paiement_classroom}
+      render :new, locals: { detail_paiement_classroom: @detail_paiement_classroom }
     end
   end
 
@@ -29,5 +28,4 @@ class DetailPaiementClassroomsController < ApplicationController
   def detail_paie_params
     params.require(:detail_paiement_classroom).permit(:classroom_id)
   end
-
 end

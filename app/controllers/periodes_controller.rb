@@ -1,5 +1,4 @@
 class PeriodesController < ApplicationController
-  
   def index
     @periodes = Periode.all
   end
@@ -17,7 +16,7 @@ class PeriodesController < ApplicationController
       redirect_to @year
     else
       flash[:error] = 'Error: Period didn t be save '
-      render :new, locals: {periode: @periode}
+      render :new, locals: { periode: @periode }
     end
   end
 

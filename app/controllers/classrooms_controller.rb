@@ -29,7 +29,6 @@ class ClassroomsController < ApplicationController
     @classroom_courses = @classroom.classroom_courses
   end
 
-
   def classroom_params
     params.require(:classroom).permit(:section_id, :name, :classement)
   end

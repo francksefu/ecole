@@ -1,5 +1,4 @@
 class CourseTeachersController < ApplicationController
-
   def new
     @course_teacher = CourseTeacher.new
     @years = Year.all
@@ -13,7 +12,7 @@ class CourseTeachersController < ApplicationController
       flash[:success] = 'Course for teacher save'
       redirect_to @teacher
     else
-      render :new, locals: {course_teacher: @course_teacher}
+      render :new, locals: { course_teacher: @course_teacher }
     end
   end
 
