@@ -1,0 +1,18 @@
+<h1 class="text-secondary text-center"> Create work online </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @give_work, url: teacher_course_teacher_periode_date_evaluation_give_works_path, method: :post, class: 'w-100', local: true do |form| %>
+  
+
+  <div class='input-group mb-3'>
+  <%= form.label :render_time, class: 'input-group-text' %>
+  <%= form.datetime_field :render_time, class: 'form-control'%>
+  </div>
+
+  <div class='input-group mb-3'>
+   
+    <%= form.file_field :images, :multiple => true ,class: 'form-control'%>
+  </div>
+
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

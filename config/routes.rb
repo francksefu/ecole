@@ -29,8 +29,9 @@ Rails.application.routes.draw do
    resources :teachers do
     resources :course_teachers do
       resources :periodes do
-
-        resources :date_evaluations, only: [:new, :create]
+        resources :date_evaluations, only: [:new, :create] do
+          resources :give_works, only: [:new, :create, :index]
+        end
         resources :promotions, only: [:index] do
           resources :date_evaluations, only: [:new, :create] do
             resources :evaluates, only: [:new, :create]

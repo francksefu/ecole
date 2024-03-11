@@ -7,6 +7,7 @@ class Promotion < ApplicationRecord
 
   has_many :evaluates
   has_many :courses, through: :evaluates
+  has_many :render_works
 
   validates :classroom_id, presence: true
   validates :student_id, presence: true

@@ -23,21 +23,24 @@
   </div>
   <div class='ms-3 me-3'>
     <a href='<%= new_teacher_course_teacher_periode_date_evaluation_path(@teacher, @course_teacher, @periode) %>', class='btn btn-dark'> Create new evaluation </a>
-    <br/> <a href="" class="btn btn-primary bleu mt-2"> Give work online </a>
   </div>
   </div>
   <div class="col-md-3"></div>
   </div>
 </div>
 
-<div>
-
+<div class="border border-1" style="overflow: scroll;">
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">names</th>
       <% @date_evaluations.each do |date_evaluation| %>
-        <th scope="col"> date : <%= date_evaluation.date %> <br> max : <%= date_evaluation.maximum%></th>
+        <th scope="col"> 
+          date : <%= date_evaluation.date %> <br> max : <%= date_evaluation.maximum %>
+          <% if date_evaluation.is_remote %>
+            <br> <a class="btn btn-primary bleu" href="<%= teacher_course_teacher_periode_date_evaluation_give_works_path(@teacher, @course_teacher, @periode, date_evaluation) %>"> send question</a>
+          <% end %>
+        </th>
       <% end %>
  
     </tr>

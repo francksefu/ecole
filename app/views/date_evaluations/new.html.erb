@@ -11,6 +11,10 @@
     <%= form.label :maximum, class: 'input-group-text' %>
     <%= form.number_field :maximum, step: :any, class: 'form-control'%>
   </div>
-  
+
+  <div class="form-check form-switch">
+    <%= form.label :is_remote, class: 'form-check-label' %>
+    <%= form.check_box :is_remote, class: "form-check-input"%>
+  </div>
 <%= form.submit class: 'btn btn-primary' %>
 <% end %>
