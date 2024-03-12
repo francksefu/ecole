@@ -1,0 +1,12 @@
+<h1 class="text-secondary text-center"> Affectation paiements </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @detail_paiement_classroom, url: year_detail_paiement_detail_paiement_classrooms_path, method: :post, class: 'w-100', local: true do |form| %>
+
+  <div class="input-group mb-3">
+    <%= form.label :classroom_id, class: "input-group-text" %>
+    <%= form.select :classroom_id, @classrooms.map {|classroom| ["#{classroom.name} #{classroom.classement}, section => #{classroom.section.name}", classroom.id]}, {}, {class: 'form-control'} %>
+  </div>
+
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

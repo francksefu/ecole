@@ -1,29 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 position-sticky top-0">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">College</a>
+    <a class="navbar-brand" href="<%= root_path %>">College</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Payement</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="#">Evenements</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Conduites</a>
-        </li>
+        
+        <% Promotion.where(student: current_user.students.first).each do |promotion| %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cours et evaluations
+            <%= "#{promotion.classroom.name} #{promotion.year.name}" %>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="<%= promotion_year_evaluates_path(promotion, promotion.year) %>">Evalutes</a></li>
+            <li><a class="dropdown-item" href="<%= student_classroom_year_paiements_path( current_user.students.first, promotion.classroom, promotion.year) %>"> Paiements</a></li>
+            <li><a class="dropdown-item" href="<%= promotion_classroom_path(promotion, promotion.classroom) %>">see work online</a></li>
+            <li><a class="dropdown-item" href="#">Bulletin</a></li>
+            <li><a class="dropdown-item" href="#">Observation disciplinary</a></li>
           </ul>
+        </li>
+        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= destroy_user_session_path %>"> Deconnexion</a>
         </li>
       </ul>
     </div>

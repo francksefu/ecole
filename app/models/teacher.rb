@@ -1,5 +1,10 @@
+require_relative 'associate_user'
+
 class Teacher < ApplicationRecord
-  has_many :course_classroom_teachers
+  include AssociateUser
+
+  has_many :course_teachers
+  has_many :classroom_courses, through: :course_teachers
   belongs_to :user
 
   validates :name, presence: true

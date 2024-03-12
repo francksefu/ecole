@@ -1,0 +1,38 @@
+<div class="container-fluid mt-3 mb-3">
+<% @periodes.each do |periode| %>
+<div class="">
+<h6 class="text-center text-secondary mt-2 mb-2"><%= periode.name %></h6>
+<% if periode.date_evaluations.empty? %>
+  <h6> Not evaluation yet </h6>
+<% else %>
+
+  <% @promotion.classroom.classroom_courses.each do |classroom_course| %>
+  <div class="border border mt-3" style="overflow: scroll;">
+    <table class="table table-striped table-md mt-3 w-100">
+      <thead>
+        <tr>
+          <th scope="col">course name</th>
+          <% DateEvaluation.where(periode_id: periode.id, classroom_course_id: classroom_course.id).each do |date_evaluation_course| %>
+            <th scope="col"><%= "#{date_evaluation_course.date} " %> <br> max: <%= date_evaluation_course.maximum%></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="col"><%= classroom_course.course.name%></td>
+          <% DateEvaluation.where(periode: periode, classroom_course: classroom_course).each do |date_evaluation_course| %>
+            <%unless Evaluate.where(date_evaluation: date_evaluation_course, promotion: @promotion).empty? %>
+              <td><%= Evaluate.where(date_evaluation: date_evaluation_course, promotion: @promotion).first.point %></td>
+            <% else %>
+            <td>non disponible</td>
+            <%end%>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<% end %>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+<div class='w-50 d-block mx-auto'>
+  <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+    <div>
+      <h3><%= @detail_paiement.frais_name %> </h3>
+      <h6><%= @detail_paiement.montant %> $</h6>
+      <h6> date de fin de paie : <%= @detail_paiement.end_date %></h6>
+      <p class="mt-2 mb-2"><%= @detail_paiement.description %> </p>
+    </div>
+    <div class='ms-3 me-3'>
+      <a  href="<%= new_year_detail_paiement_detail_paiement_classroom_path(@year, @detail_paiement) %>" class="btn btn-dark"> Affect this paiement to classroom</a>
+    </div>
+  </div>
+</div>
+
+<% if @detail_paiement_classrooms.empty?%>
+  <h3> No classroom affect to this paiement </h3>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> classroom</th>
+      <th scope="col">section </th>
+      <th scope="col">see</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @detail_paiement_classrooms.each do |detail_paiement_classroom| %>
+    <tr>
+      <td><%= detail_paiement_classroom.classroom.name %> </td>
+      <td><%= detail_paiement_classroom.classroom.section.name%></td>
+      <td> <a href='<%= classroom_classroom_paiement_path(detail_paiement_classroom.classroom) %>' class="btn btn-primary"> see all paiement for this class</a> </td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>
+</div>

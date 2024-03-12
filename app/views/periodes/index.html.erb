@@ -1,0 +1,24 @@
+
+<h1> See periodes</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">start date</th>
+      <th scope="col">end date</th>
+      <th scope="col">year scolarship</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @periodes.each do |periode| %>
+    <tr>
+      <td><%= periode.name %></td>
+      <td><%= periode.start_date %> </td>
+      <td><%= periode.end_date %> </td>
+      <td><%= periode.year.name %> </td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

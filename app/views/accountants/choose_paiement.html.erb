@@ -1,0 +1,37 @@
+<div class="row p-3">
+  <div class="col-md-3"></div>
+  <div class='col-md-6 d-block mx-auto'>
+    <div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+      <div>
+        <h3><%= @accountant.name %> <%= @accountant.last_name %></h3>
+        <h6><%= @accountant.first_name %> </h6>
+        <h6><%= @accountant.phone %> </h6>
+        <h6><%= @accountant.date_of_birth %> </h6>
+      </div>
+      <div class='ms-3 me-3'>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"> </div>
+</div>
+
+<div>
+<% @years.each do |year| %>
+<div class='border border-1 w-75 d-block mx-auto'>
+  <h5 class='text-center w-25 d-block mx-auto'> <%= year.name %> </h5>
+  <% @sections.each do |section| %>
+  <h6 class='text-center d-block mx-auto text-secondary border border-1 w-50 p-2'> <%= section.name%> </h6>
+      
+  <div class='row p-3'>
+    <% section.classrooms.each do |classroom| %>
+      <div class='col-md-3 mt-3'>
+        <a href='<%= accountant_year_classroom_paiements_path(@accountant, year, classroom) %>' class='btn btn-primary'><%= classroom.name%> </a>
+      </div>
+    <% end %>
+    
+  </div>
+  <% end %>
+  </div>
+<% end %>
+</div>

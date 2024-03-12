@@ -1,0 +1,91 @@
+<div>
+<div class="row">
+<div class="col-md-3"></div>
+<div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @teacher.name %> <%= @teacher.last_name %></h3>
+    <h6><%= @teacher.first_name %> </h6>
+    <h6><%= @teacher.phone %> </h6>
+    <h6><%= @teacher.date_of_birth %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @classroom.name %> <%= @classroom.classement %></h3>
+    <h6><%= @classroom.section.name %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    <a href='<%= new_teacher_course_teacher_periode_date_evaluation_path(@teacher, @course_teacher, @periode) %>', class='btn btn-dark'> Create new evaluation </a>
+  </div>
+  </div>
+  <div class="col-md-3"></div>
+  </div>
+</div>
+
+<div class="border border-1" style="overflow: scroll;">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">names</th>
+      <% @date_evaluations.each do |date_evaluation| %>
+        <th scope="col"> 
+          date : <%= date_evaluation.date %> <br> max : <%= date_evaluation.maximum %>
+          <% if date_evaluation.is_remote %>
+            <br> <a class="btn btn-primary bleu" href="<%= teacher_course_teacher_periode_date_evaluation_give_works_path(@teacher, @course_teacher, @periode, date_evaluation) %>"> send question</a>
+          <% end %>
+        </th>
+      <% end %>
+ 
+    </tr>
+  </thead>
+  <tbody>
+  <% @promotions.each do |promotion| %>
+    <tr>
+      <td><%= "#{promotion.student.name} #{promotion.student.first_name} #{promotion.student.last_name}" %></td>
+      <% @date_evaluations.each do |date_evaluation| %>
+        <% if date_evaluation.evaluates.empty?%>
+          <td>
+            <a href='<%= new_teacher_course_teacher_periode_promotion_date_evaluation_evaluate_path(@teacher, @course_teacher, @periode, promotion, date_evaluation) %>' class='btn btn-primary'> Creer </a> 
+            <% if (date_evaluation.is_remote) %>
+              <% unless RenderWork.where(promotion: promotion, give_work: date_evaluation.give_works.first).empty? %>
+                <a href="<%= promotion_give_work_render_works_path(promotion, date_evaluation.give_works.first) %>" class="btn btn-success"> See work </a>
+              <% end %>
+            <% end %>
+          </td>
+        <% else %>
+          <% if date_evaluation.evaluates.where(promotion_id: promotion.id).any? %>
+            <td> 
+              <%= date_evaluation.evaluates.where(promotion_id: promotion.id).first.point %>  
+              <% if (date_evaluation.is_remote) %>
+                <% unless RenderWork.where(promotion: promotion, give_work: date_evaluation.give_works.first).empty? %>
+                <a href="<%= promotion_give_work_render_works_path(promotion, date_evaluation.give_works.first) %>" class="btn btn-success"> See work </a>
+                <% end %>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <a href='<%= new_teacher_course_teacher_periode_promotion_date_evaluation_evaluate_path(@teacher, @course_teacher, @periode, promotion, date_evaluation) %>' class='btn btn-primary'> Creer </a> 
+              <% if (date_evaluation.is_remote) %>
+                <% unless RenderWork.where(promotion: promotion, give_work: date_evaluation.give_works.first).empty? %>
+                <a href="<%= promotion_give_work_render_works_path(promotion, date_evaluation.give_works.first) %>" class="btn btn-success"> See work </a>
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
+         
+        <% end %>
+        <td> </td>
+      <% end %>
+     
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

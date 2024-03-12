@@ -1,0 +1,39 @@
+<h1 class='text-secondary text-center'> Create student</h1>
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @student, url: students_path, method: :post, class: 'w-100', local: true do |form| %>
+  <div class='input-group mb-3'>
+    <%= form.label :name, class: 'input-group-text' %>
+    <%= form.text_field :name, class: 'form-control'%>
+  </div>
+  <div class='input-group mb-3'>
+    <%= form.label :first_name, class: 'input-group-text'%>
+    <%= form.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class='input-group mb-3'>
+    <%= form.label :last_name, class: 'input-group-text'%>
+    <%= form.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class='input-group mb-3'>
+    <%= form.label :date_of_birth, class: 'input-group-text'%>
+    <%= form.date_field :date_of_birth, class: 'form-control' %>
+  </div>
+
+  <div class="input-group mb-3">
+    <%= form.label :parent_id, class: "input-group-text" %>
+    <%= form.text_field :parent_id, class: 'form-control', list: 'parent_list' %>
+    <datalist id='parent_list'>
+      <% @parents.each do |parent| %>
+      <option value="<%= parent.id %>"><%= parent.name %> <%= parent.first_name %> </option>
+      <% end %>
+    </datalist>
+  </div>
+
+  <div class='input-group mb-3'>
+    <%= form.label :phone, class: 'input-group-text' %>
+    <%= form.text_field :phone, class: 'form-control' %>
+  </div>
+
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>

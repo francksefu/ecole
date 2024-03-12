@@ -1,0 +1,58 @@
+<div class='w-50 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @teacher.name %> <%= @teacher.last_name %></h3>
+    <h6><%= @teacher.first_name %> </h6>
+    <h6><%= @teacher.phone %> </h6>
+    <h6><%= @teacher.date_of_birth %> </h6>
+  </div>
+  <div class='ms-3 me-3'>
+    <% if can?(:create, Teacher) %>
+      <a href='<%= new_teacher_course_teacher_path(@teacher) %>' class='btn btn-dark'> Add affectation to course </a>
+    <% end %>
+  </div>
+</div>
+</div>
+<div class="p-3">
+<% @years.each do |year| %>
+<h5 class="text-center w-25 d-block mx-auto bg-warning"> <%= year.name %> </h5>
+
+<% if year.course_teachers.where(teacher: @teacher).empty? %>
+<h6 class="text-center text-secondary">No course affected to this teacher this year </h6>
+<%else%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> classroom name</th>
+      <th scope="col">section</th>
+      <th scope="col">course</th>
+      <th> actions </th>
+      <% if can?(:create, Evaluate) %>
+      <th> Evaluation </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_teachers.each do |course_teacher| %>
+    <% if course_teacher.year == year%>
+    <tr>
+      <td><%= course_teacher.classroom_course.classroom.name %> <%= course_teacher.classroom_course.classroom.classement %></td>
+      <td><%= course_teacher.classroom_course.classroom.section.name%></td>
+      <td><%= course_teacher.classroom_course.course.name%></td>
+      <td> actions </td>
+      <% if can?(:create, Evaluate) %>
+      <td>
+      <% year.periodes.each do |periode| %>
+        <a href="<%= teacher_course_teacher_periode_promotions_path(@teacher, course_teacher, periode) %>" class="btn btn-success"> <%= periode.name %> </a>
+      <% end %>
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+<% end %>
+</div>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecole</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "app", "data-turbo-track": "reload" %>
+    
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>  
+    <%= javascript_importmap_tags %>
+   
+  </head>
+
+  <body class='bleu'>
+  <% if current_user %>
+    <% if current_user.is? :administrator %>
+      <%= render "/shared/nav_admin" %>
+    <% else %>
+      <%= render "/shared/nav_student" %>
+    <% end %>
+  <% end %>
+    <% flash.each do |name, msg| %>
+      <div class="<%= name %>"><%= msg %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

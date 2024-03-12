@@ -8,4 +8,71 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
    root "homes#index"
+   resources :parents
+   resources :promotions do
+    resources :give_works do
+      resources :render_works, only: [:new, :create, :index]
+    end
+    resources :classrooms, only: [:show]
+    resources :years do
+      resources :evaluates, only: [:index]
+    end
+   end
+   resources :administrators, only: [:new, :create, :index]
+   resources :students do
+    resources :detail_paiement_classrooms do
+      resources :paiements, only: [:new, :create]
+    end
+    resources :promotions, only: [:new, :create]
+    resources :classrooms do
+      resources :years do
+        resources :paiements, only: [:index]
+      end
+    end
+   end
+   resources :teachers do
+    resources :course_teachers do
+      resources :periodes do
+        resources :date_evaluations, only: [:new, :create] do
+          resources :give_works, only: [:new, :create, :index]
+        end
+        resources :promotions, only: [:index] do
+          resources :date_evaluations, only: [:new, :create] do
+            resources :evaluates, only: [:new, :create]
+          end
+        end
+
+      end
+    end
+   end
+   resources :accountants do
+    get "/student_promotions", to: "students#student_promotions"
+   end
+   resources :studies_directors
+   resources :discipline_directors do
+    resources :years do
+      resources :classrooms do
+        resources :observation_disciplinaries, only: [:new, :create, :index]
+      end
+    end
+   end
+   resources :sections
+   resources :classrooms do
+    resources :promotions do
+      resources :courses do
+        get "/student_work", to:  "give_works#student_work"
+      end
+    end
+    get "/classroom_paiement", to: "detail_paiement_classrooms#classroom_paiement"
+    resources :classroom_courses
+    resources :classroom_teachers, only: [:index]
+   end
+   resources :courses
+   resources :years do
+    resources :periodes
+    resources :detail_paiements, only: [:new, :create, :index, :show] do
+      resources :detail_paiement_classrooms, only: [:new, :create]
+    end
+   end
+
 end

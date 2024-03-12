@@ -1,0 +1,37 @@
+<div class="container">
+<% if @date_evaluations.empty? %>
+  No online work yet
+<% else %>
+<% @date_evaluations.each do |date_evaluation| %>
+
+  <div class="row p-2">  
+    <div class="col-md-3"> </div>
+    <div class='col-md-6 text-secondary d-flex justify-content-between border border-1 p-3'>
+      <div>
+      <h3> date of creation : <%=  date_evaluation.date %> </h3>
+      <h6>maximum : <%=  date_evaluation.maximum %> </h6>
+      <h6> periode : <%=  date_evaluation.periode.name %> </h6>
+      <% unless  date_evaluation.give_works.empty? %>
+        <h6 class="text-success"> time of render : <%=  date_evaluation.give_works.first.render_time%> </h6>
+      <% end %>
+      </div>
+      <div class='ms-3 me-3'>
+        <% if  date_evaluation.give_works.empty? %>
+
+        <% else %>
+          <% if  date_evaluation.give_works.first.images.attached? %>
+            <%  date_evaluation.give_works.first.images.each do |attachement|%>
+              file (click to download) : <%= link_to attachement.filename, rails_blob_path(attachement, disposition: "attachement"), class: 'btn btn-primary bleu' %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+        <br><a href="<%= promotion_give_work_render_works_path(@promotion, date_evaluation.give_works.first) %>" class="btn btn-success vert mt-3"> Render work </a>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+<% end %>
+<% end %>
+</div>

@@ -1,4 +1,8 @@
+require_relative 'associate_user'
+
 class Parent < ApplicationRecord
+  include AssociateUser
+
   has_many :students
   belongs_to :user
 

@@ -7,14 +7,35 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "app", "data-turbo-track": "reload" %>
+    
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>  
     <%= javascript_importmap_tags %>
-    
+   
   </head>
 
-  <body class='bg-light'>
-    <%= render "/shared/nav_student" %>
-    <p class="notice"><%= notice %><%= alert %></p>
+  <body class='bg-light' style="overflow-x: hidden;">
+  <% if current_user %>
+    <% if current_user.is? :administrator %>
+      <%= render "/shared/nav_admin" %>
+    <% elsif current_user.is? :accountant %>
+      <%= render "/shared/nav_accountant" %>
+    <% elsif current_user.is? :teacher %>
+      <%= render "/shared/nav_teacher" %>
+    <% elsif current_user.is? :student %>
+      <%= render "/shared/nav_student" %>
+    <% elsif current_user.is? :studies_director %>
+      <%= render "/shared/nav_studies_director" %>
+    <% elsif current_user.is? :discipline_director %>
+      <%= render "/shared/nav_discipline" %>
+    
+    <% else %>
+      
+    <% end %>
+  <% end %>
+    <% flash.each do |name, msg| %>
+      <div class="<%= name %>"><%= msg %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

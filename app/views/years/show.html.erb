@@ -1,0 +1,47 @@
+<div class="row">
+<div class="col-md-2"></div>
+<div class='col-md-8 d-block mx-auto'>
+<div class='text-secondary d-flex justify-content-between border border-1 p-3 m-3'>
+  <div>
+    <h3><%= @year.name %> </h3>
+    <h6><%= @year.description %> </h6>
+    
+  </div>
+  <div class='ms-3 me-3'>
+  <% if can?(:create, Periode) %>
+    <a href='<%= new_year_periode_path(@year) %>' class='btn btn-dark'> Add periode to this year </a>
+  <% end %>
+  <% if can?(:create, DetailPaiement) %>
+    <a href='<%= year_detail_paiements_path(@year) %>' class='btn btn-dark mt-3'> See differents paiement on this year </a>
+  <% end %>
+  </div>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+<% if @periodes.empty?%>
+  <h3> Not periode </h3>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"> name</th>
+      <th scope="col">start_date</th>
+      <th scope="col">end_date</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @periodes.each do |periode| %>
+    <tr>
+      <td><%= periode.name %> </td>
+      <td><%= periode.start_date%></td>
+      <td> <%= periode.end_date %></td>
+      <td> action</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

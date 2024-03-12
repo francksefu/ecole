@@ -1,0 +1,25 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">name</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+      <th scope="col">date of birth</th>
+      <th scope="col">phone</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% persons.each do |person| %>
+    <tr>
+      <th scope="row"> <%= person.id %> </th>
+      <td><%= person.name %></td>
+      <td><%= person.first_name %></td>
+      <td><%= person.last_name %></td>
+      <td><%= person.date_of_birth %></td>
+      <td><%= person.phone %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

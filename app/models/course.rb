@@ -1,8 +1,6 @@
 class Course < ApplicationRecord
-  has_many :course_classroom_teachers
-  has_many :classrooms, through: :course_classroom_teachers
-  has_many :evaluates
-  has_many :promotions, through: :evaluates
+  has_many :classroom_courses
+  has_many :classroom, through: :classroom_courses
 
   validates :name, presence: true
   validates :credit, presence: true
