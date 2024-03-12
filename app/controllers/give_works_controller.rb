@@ -5,8 +5,13 @@ class GiveWorksController < ApplicationController
 
   def student_work
     @classroom = Classroom.find(params[:classroom_id].to_i)
-    @date_evaluations = DateEvaluation.where(is_remote: true)
+    @course = Course.find(params[:course_id].to_i)
+    @promotion = Promotion.find(params[:promotion_id].to_i)
+    @year = @promotion.year
+    @classroom_course = ClassroomCourse.where(classroom: @classroom, course: @course).first
+    @date_evaluations = DateEvaluation.where(is_remote: true, classroom_course_id: @classroom_course.id)
   end
+
   def index
     @teacher = Teacher.find(params[:teacher_id].to_i)
     @course_teacher = CourseTeacher.find(params[:course_teacher_id].to_i)

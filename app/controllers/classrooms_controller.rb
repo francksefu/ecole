@@ -27,6 +27,9 @@ class ClassroomsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:id])
     @classroom_courses = @classroom.classroom_courses
+    if current_user.is? :student
+      @promotion = Promotion.find(params[:promotion_id].to_i)
+    end
   end
 
   def classroom_params

@@ -9,8 +9,10 @@
       <h6><%= @classroom.section.name %> </h6>
     </div>
     <div class='p-1'>
+    <% unless current_user.is? :student %>
       <a href='<%= classroom_classroom_teachers_path(@classroom) %>' class='btn btn-dark'> See teachers for every course </a>
       <br/><a class='btn btn-primary mt-2' href='<%= new_classroom_classroom_course_path(@classroom) %>'> Add course to this classroom</a>
+    <% end %>
     </div>
   </div>
   <div class="col-md-3"> </div>
@@ -21,6 +23,9 @@
       <th scope="col">name</th>
       <th scope="col">credit</th>
       <th scope="col">description</th>
+      <% if current_user.is? :student %>
+      <th> Work online </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +34,9 @@
       <td><%= classroom_course.course.name %></td>
       <td><%= classroom_course.course.credit %> </td>
       <td><%= classroom_course.course.description %> </td>
+      <% if current_user.is? :student %>
+      <td> <a href="<%= classroom_promotion_course_student_work_path(@classroom, @promotion, classroom_course.course)%>" class="btn btn-primary bleu"> see work online </a> </td>
+      <% end %>
       <td> action</td>
     </tr>
   <% end %>

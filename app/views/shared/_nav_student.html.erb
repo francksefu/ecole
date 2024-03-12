@@ -19,7 +19,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="<%= promotion_year_evaluates_path(promotion, promotion.year) %>">Evalutes</a></li>
             <li><a class="dropdown-item" href="<%= student_classroom_year_paiements_path( current_user.students.first, promotion.classroom, promotion.year) %>"> Paiements</a></li>
-            <li><a class="dropdown-item" href="#">see work online</a></li>
+            <li><a class="dropdown-item" href="<%= promotion_classroom_path(promotion, promotion.classroom) %>">see work online</a></li>
             <li><a class="dropdown-item" href="#">Bulletin</a></li>
             <li><a class="dropdown-item" href="#">Observation disciplinary</a></li>
           </ul>

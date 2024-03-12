@@ -10,6 +10,10 @@ Rails.application.routes.draw do
    root "homes#index"
    resources :parents
    resources :promotions do
+    resources :give_works do
+      resources :render_works, only: [:new, :create, :index]
+    end
+    resources :classrooms, only: [:show]
     resources :years do
       resources :evaluates, only: [:index]
     end
@@ -54,6 +58,11 @@ Rails.application.routes.draw do
    end
    resources :sections
    resources :classrooms do
+    resources :promotions do
+      resources :courses do
+        get "/student_work", to:  "give_works#student_work"
+      end
+    end
     get "/classroom_paiement", to: "detail_paiement_classrooms#classroom_paiement"
     resources :classroom_courses
     resources :classroom_teachers, only: [:index]

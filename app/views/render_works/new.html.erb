@@ -1,0 +1,12 @@
+<h1 class="text-secondary text-center"> send work online </h1>
+
+<div class= 'border border-1 mt-3 w-50 p-3 d-block mx-auto'>
+<%= form_with model: @render_work, url: promotion_give_work_render_works_path, method: :post, class: 'w-100', local: true do |form| %>
+  <h6 class="text-center text-secondary"> choose file to send as the response to work online </h6>
+
+  <div class='input-group mb-3'>
+    <%= form.file_field :images, :multiple => true ,class: 'form-control'%>
+  </div>
+
+<%= form.submit class: 'btn btn-primary' %>
+<% end %>
